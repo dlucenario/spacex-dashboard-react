@@ -1,0 +1,32 @@
+.dashboardCardContainer {
+    background-color: #27293D;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #696969;
+    border-width: 2px;
+    padding: 15px;
+}
+
+.featureLaunch {
+
+}
+
+.featureLaunch .countdownContainer {
+    width: 30px;
+    height: 30px;
+    padding: 12px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #3358f4;
+    /* background: linear-gradient(0deg,#3358f4,#1d8cf8); */
+    margin: 0 auto;
+}
+
+.countdownContainer .number {
+    font-size: 24px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;;
+    color: #ffffff;
+}

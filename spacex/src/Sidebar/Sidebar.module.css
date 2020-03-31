@@ -1,0 +1,32 @@
+.sidebarContainer {
+    padding: 30px;
+}
+
+.sidebarContainer .headerSiderbar {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    margin-left: 20px;
+}
+
+.sidebarContainer h6 {
+    color: #dcdcdc;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.sidebarContainer .title {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.linkContainer {
+    height: 85vh;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background: linear-gradient(0deg,#3358f4,#1d8cf8);
+}
+
+.sidebarContainer .imageLogo {
+    width: 40px;
+    height: 40px;
+}
