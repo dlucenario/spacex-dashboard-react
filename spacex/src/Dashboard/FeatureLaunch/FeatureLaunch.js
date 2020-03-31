@@ -10,7 +10,6 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
 const useStyles = makeStyles({
@@ -30,7 +29,7 @@ export default function FeatureLaunch(props) {
   const materialClasses = useStyles();
   const calculateTimeLeft = () => {
 
-      const difference = props.launchData.launch_date_unix - Math.floor(Date.now() / 1000);
+      const difference = props.launchData.launchDateUnix - Math.floor(Date.now() / 1000);
       let timeLeft = {};
   
       if (difference > 0) {
@@ -41,53 +40,53 @@ export default function FeatureLaunch(props) {
           seconds: Math.floor((difference) % 60)
         };
       }
+      // console.log(timeLeft);
       return timeLeft;
     };
 
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
     useEffect(() => {
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setTimeLeft(calculateTimeLeft());
       }, 1000);
+      
+      return () => {clearTimeout(timeoutId)}
     });
     
-    const timerComponents = [];
-    Object.keys(timeLeft).forEach(interval => {
-      if (!timeLeft[interval]) {
-        return;
-      }
+    // const timerComponents = [];
+    // Object.keys(timeLeft).forEach(interval => {
+    //   if (!timeLeft[interval]) {
+    //     return;
+    //   }
   
-      timerComponents.push(
-        <span className = {classes.number}>
-          {timeLeft[interval]}
-        </span>
-      );
-    });
+    //   timerComponents.push(
+    //     <span className = {classes.number}>
+    //       {timeLeft[interval]}
+    //     </span>
+    //   );
+    // });
 
-    
-    let rocketName = '';
-    if(props.launchData.rocket !== undefined) {
-      rocketName = props.launchData.rocket.rocket_name;
-    }
-
-    //console.log(props.launchData.rocket);
-
+    // console.log(timeLeft);
     return(
+      
         <div className = {dashboardClasses.dashboardCardContainer}>
             <div className = {classes.featureLaunch}>
                 {/* {timerComponents.length ? timerComponents : <span>Time's up!</span>}
              */}
             <Typography className = {classes.featureLaunchTitle}>
-                Next Launch - {props.launchData.mission_name}
+                Next Launch - {props.launchData.missionName}
             </Typography>
             <Typography className = {classes.tminus}>
                 T-MINUS
             </Typography>
-            <Grid container spacing = {2} direction ="row" justify = "center" alignItmes ="center">
-
+            <Grid container spacing = {2} direction ="row" justify = "center" alignItems ="center">
+                {/* Bug: when minutes turn to 0*/}
                 <Grid item xs = {3}>
                     <div className = {classes.countdownContainer}>
-                        {timerComponents[0]}
+                      <span className = {classes.number}>
+                        {timeLeft.days}
+                      </span>
                     </div>
                     <Typography className = {classes.time}>
                         Days
@@ -95,7 +94,9 @@ export default function FeatureLaunch(props) {
                 </Grid>
                 <Grid item xs = {3}>
                     <div className = {classes.countdownContainer}>
-                        {timerComponents[1]}
+                      <span className = {classes.number}>
+                        {timeLeft.hours}
+                      </span>
                     </div>
                     <Typography className = {classes.time}>
                       Hours
@@ -103,7 +104,9 @@ export default function FeatureLaunch(props) {
                 </Grid>
                 <Grid item xs = {3}>
                     <div className = {classes.countdownContainer}>
-                        {timerComponents[2]}
+                      <span className = {classes.number}>
+                        {timeLeft.minutes}
+                      </span>
                     </div>
                     <Typography className = {classes.time}>
                       Minutes
@@ -112,7 +115,9 @@ export default function FeatureLaunch(props) {
 
                 <Grid item xs = {3}>
                     <div className = {classes.countdownContainer}>
-                        {timerComponents[3]}
+                      <span className = {classes.number}>
+                        {timeLeft.seconds}
+                      </span>
                     </div>
                     <Typography className = {classes.time}>
                       Seconds
@@ -130,42 +135,33 @@ export default function FeatureLaunch(props) {
                         Launch Date
                       </TableCell>
                       <TableCell classes = {{root: materialClasses.tableContent}}>
-                        Feb 3, 2020
+                        {props.launchData.launchDate}
                       </TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell>
+                      <TableCell classes = {{root: materialClasses.tableHeader}}>
                         Flight Number
                       </TableCell>
-                      <TableCell>
-                        {props.launchData.flight_number}
+                      <TableCell classes = {{root: materialClasses.tableContent}}>
+                        {props.launchData.flightNumber}
                       </TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell>
+                      <TableCell classes = {{root: materialClasses.tableHeader}}>
                         Rocket Name
                       </TableCell>
-                      <TableCell>
-                        {rocketName}
-                        {/* {props.launchData.rocket['rocket_name']}  */}
+                      <TableCell classes = {{root: materialClasses.tableContent}}>
+                        {props.launchData.rocketName}
                       </TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell>
+                      <TableCell classes = {{root: materialClasses.tableHeader}}>
                         Customer
                       </TableCell>
-                      <TableCell>
-                        {/* {props.launchData.second_stage.payloads[0].customers[0]} */}
+                      <TableCell classes = {{root: materialClasses.tableContent}}>
+                        {props.launchData.customerName}
                       </TableCell>
                     </TableRow>
-                    {/* {rows.map(row => (
-                        <TableRow key={row.name}>
-                        <TableCell component="th" scope="row">
-                            {row.key}
-                        </TableCell>
-                        <TableCell align="right">{row.value}</TableCell>
-                        </TableRow>
-                    ))} */}
                   </TableBody>
 
               </Table>

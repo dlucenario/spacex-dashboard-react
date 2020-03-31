@@ -24,3 +24,7 @@ export {
 export {
     getShips
 } from './shipActions';
+
+export {
+    getPayloads
+} from './payloadActions';

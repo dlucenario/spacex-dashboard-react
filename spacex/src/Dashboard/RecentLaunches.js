@@ -84,7 +84,7 @@ export default function RecentLaunches(props) {
                     </TableHead>
                     <TableBody>
                     {props.launchData.map(row => (
-                        <TableRow key={row.name}>
+                        <TableRow key={row.mission_name}>
                         <TableCell classes = {{root: materialClasses.tableContent}} component="th" scope="row">
                             {row.mission_name}
                         </TableCell>

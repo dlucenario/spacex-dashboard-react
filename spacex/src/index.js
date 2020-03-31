@@ -14,6 +14,7 @@ import rocketReducer from './store/reducers/rocketReducer';
 import dragonReducer from './store/reducers/dragonReducer';
 import coreReducer from './store/reducers/coreReducer';
 import shipReducer from './store/reducers/shipReducer';
+import payloadReducer from './store/reducers/payloadReducer';
 
 const rootReducer = combineReducers({
   launchReducer: launchReducer,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   rocketReducer: rocketReducer,
   dragonReducer: dragonReducer,
   coreReducer: coreReducer,
-  shipReducer: shipReducer
+  shipReducer: shipReducer,
+  payloadReducer: payloadReducer
 });
 
 const store = createStore(rootReducer, compose(

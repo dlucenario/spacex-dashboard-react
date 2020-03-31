@@ -1,0 +1,8 @@
+.appbarContainer {
+    height: 65px;
+    width: 100%;
+}
+
+.appbarContainerList{
+    float:right;
+}

@@ -7,17 +7,16 @@ import MetricList from './Metrics/MetricList';
 import UpcomingLaunch from './UpcomingLaunch';
 import FeatureLaunch from './FeatureLaunch/FeatureLaunch';
 import RecentLaunches from './RecentLaunches';
-import CustomerChart from './CustomerChart';
+// import CustomerChart from './CustomerChart';
 import PayloadChart from './PayloadChart';
 
 import * as actions from '../store/actions/index';
-import classes from './Dashboard.module.css';
 
 
 class Dashboard extends React.Component {
 
     componentDidMount() {
-
+        this.props.getPayloadList();
         this.props.getLaunches();
         this.props.getMissions();
         this.props.getCores();
@@ -25,6 +24,7 @@ class Dashboard extends React.Component {
         this.props.getUpcomingLaunches();
         this.props.getRecentLaunches();
         this.props.getFeatureLaunch();
+        
     }
     
     render() {
@@ -41,6 +41,19 @@ class Dashboard extends React.Component {
                     refreshShips = {this.props.getShips}
                 ></MetricList>
                 <Grid container spacing = {2}>
+                    <Grid item lg = {8}>
+                        <PayloadChart
+                            chartData = {this.props.topPayloadData}>
+                        </PayloadChart>
+                    </Grid>
+                    <Grid item lg = {4}>
+                        <FeatureLaunch
+                            launchData = {this.props.featureLaunch}
+                        >
+                        </FeatureLaunch>
+                    </Grid>
+                </Grid>
+                <Grid container spacing = {2}>
                     <Grid item lg = {5}>
                         <UpcomingLaunch
                             launchData = {this.props.upcomingLaunches}>
@@ -55,17 +68,6 @@ class Dashboard extends React.Component {
                         <FeatureLaunch></FeatureLaunch>
                     </Grid> */}
                 </Grid>
-                <Grid container spacing = {2}>
-                    <Grid item lg = {8}>
-                        <PayloadChart></PayloadChart>
-                    </Grid>
-                    <Grid item lg = {4}>
-                        <FeatureLaunch
-                            launchData = {this.props.featureLaunch}
-                        >
-                        </FeatureLaunch>
-                    </Grid>
-                </Grid>
             </div>
         )
     }
@@ -79,7 +81,8 @@ const mapStateToProps = state => {
         ships: state.shipReducer.ships,
         upcomingLaunches: state.launchReducer.upcomingLaunches,
         recentLaunches: state.launchReducer.recentLaunches,
-        featureLaunch: state.launchReducer.featureLaunch
+        featureLaunch: state.launchReducer.featureLaunch,
+        topPayloadData: state.payloadReducer.payloadTopFive
     }
 };
 
@@ -91,7 +94,8 @@ const mapDispatchToProps = dispatch => {
         getShips: () => dispatch(actions.getShips()),
         getUpcomingLaunches: () => dispatch(actions.getUpcomingLaunches()),
         getRecentLaunches: () => dispatch(actions.getRecentLaunches()),
-        getFeatureLaunch: () => dispatch(actions.getFeatureLaunch())
+        getFeatureLaunch: () => dispatch(actions.getFeatureLaunch()),
+        getPayloadList: () => dispatch(actions.getPayloads())
     //    selectUserRoles:(field,value) => dispatch(actions.selectUserGroup(field,value))
        
     };

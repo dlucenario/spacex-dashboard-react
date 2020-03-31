@@ -25,7 +25,7 @@ const useStyles = makeStyles({
       backgroundColor: '#FFFFFF',
       height: '2px'
     },
-  });
+});
 
 export default function Sidebar() {
     const materialClasses = useStyles();
@@ -39,7 +39,6 @@ export default function Sidebar() {
 
             <div className = {classes.linkContainer}>
                 <List component="nav">
-
                     <ListItem>
                         <ListItemIcon>
                             <img className = {classes.imageLogo} src= {titleIcon} alt = 'title-logo'/>
@@ -50,7 +49,7 @@ export default function Sidebar() {
                     </ListItem>
                     <Divider classes={{root: materialClasses.divider}} />
 
-                    <ListItem button  component = {NavLink} to="/dashboard">
+                    <ListItem button className = {classes.listItem} component = {NavLink} to="/dashboard">
                         <ListItemIcon>
                             <img className = {classes.imageLogo} src= {dashboardIcon} alt = 'dashboard-icon'/>
                         </ListItemIcon>
@@ -59,7 +58,7 @@ export default function Sidebar() {
                         />
                     </ListItem>
 
-                    <ListItem button  component = {NavLink} to="/launch">
+                    <ListItem button className = {classes.listItem}   component = {NavLink} to="/launch">
                         <ListItemIcon>
                             <img className = {classes.imageLogo} src= {launchIcon} alt = 'launch-icon'/>
                         </ListItemIcon>
@@ -68,7 +67,7 @@ export default function Sidebar() {
                         />
                     </ListItem>
 
-                    <ListItem button  component = {NavLink} to="/mission">
+                    <ListItem button  className = {classes.listItem} component = {NavLink} to="/mission">
                         <ListItemIcon>
                             <img className = {classes.imageLogo} src= {missionIcon} alt = 'mission-icon'/>
                         </ListItemIcon>
@@ -77,7 +76,7 @@ export default function Sidebar() {
                         />
                     </ListItem>
 
-                    <ListItem button  component = {NavLink} to="/site">
+                    <ListItem button className = {classes.listItem} component = {NavLink} to="/site">
                         <ListItemIcon>
                             <img className = {classes.imageLogo} src= {siteIcon}  alt = 'site-icon'/>
                         </ListItemIcon>
@@ -86,7 +85,7 @@ export default function Sidebar() {
                         />
                     </ListItem>
 
-                    <ListItem button  component = {NavLink} to="/about">
+                    <ListItem button className = {classes.listItem} component = {NavLink} to="/about">
                         <ListItemIcon>
                             <img className = {classes.imageLogo} src= {infoIcon}  alt = 'info-icon'/>
                         </ListItemIcon>
@@ -95,7 +94,7 @@ export default function Sidebar() {
                         />
                     </ListItem>
 
-                    <ListItem button  component = {NavLink} to="/payload">
+                    <ListItem button  className = {classes.listItem} component = {NavLink} to="/payload">
                         <ListItemIcon>
                             <img className = {classes.imageLogo} src= {payloadIcon} alt = 'payload-icon'/>
                         </ListItemIcon>
@@ -104,7 +103,7 @@ export default function Sidebar() {
                         />
                     </ListItem>
 
-                    <ListItem button  component = {NavLink} to="/rocket">
+                    <ListItem button  className = {classes.listItem} component = {NavLink} to="/rocket">
                         <ListItemIcon>
                             <img className = {classes.imageLogo} src= {rocketIcon} alt = 'rocket-icon'/>
                         </ListItemIcon>

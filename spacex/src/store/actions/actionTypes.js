@@ -18,3 +18,6 @@ export const SET_CORES = 'SET_CORES';
 
 // Ship Module
 export const SET_SHIPS = 'SET_SHIPS';
+
+// Payload Module
+export const SET_PAYLOADS = 'SET_PAYLOADS';

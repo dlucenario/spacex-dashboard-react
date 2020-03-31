@@ -1,0 +1,27 @@
+.notFoundContainer {
+ margin: 0 auto;
+ height: 60vh;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+
+ background-color: #27293D;
+ border-radius: 5px;
+ border-style: solid;
+ border-color: #696969;
+ border-width: 2px;
+}
+
+.notFoundImage {
+    width: 50vh;
+    height: 50vh;
+    padding-right: 20px;
+}
+
+.notFoundContainer h3 {
+    color: #9a9a9a;
+}
+
+.notFoundContainer h6 {
+    color: #ffffff;
+}

@@ -53,8 +53,21 @@ const setRecentLaunches = (state,action) => {
 }
 
 const setFeatureLaunch = (state,action) => {
+
+    const newDate = new Date(action.featureLaunch.launch_date_unix * 1000);
+    const tempDate = `${convertMonth(newDate.getMonth())} ${newDate.getDate()}, ${newDate.getFullYear()}`;
+
+    const featureLaunch = {
+        launchDateUnix: action.featureLaunch.launch_date_unix,
+        launchDate: tempDate,
+        missionName: action.featureLaunch.mission_name,
+        flightNumber: action.featureLaunch.flight_number,
+        rocketName: action.featureLaunch.rocket.rocket_name,
+        customerName: action.featureLaunch.rocket.second_stage.payloads[0].customers[0]
+    };
+
     return updateObject(state, {
-        featureLaunch: action.featureLaunch
+        featureLaunch: featureLaunch
     });
 }
 

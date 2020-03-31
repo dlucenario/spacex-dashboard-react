@@ -8,8 +8,8 @@ export default function MetricList(props) {
 
     const launchIcon = require('../../images/icons/rocket.svg');
     const missionIcon = require('../../images/icons/target.svg');
-    const rocketIcon = require('../../images/icons/project.svg');
-    const dragonIcon = require('../../images/icons/dragon.svg');
+    // const rocketIcon = require('../../images/icons/project.svg');
+    // const dragonIcon = require('../../images/icons/dragon.svg');
     const cpuIcon = require('../../images/icons/cpu.svg');
     const shipIcon = require('../../images/icons/boat.svg');
 
