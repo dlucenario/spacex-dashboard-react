@@ -1,11 +1,11 @@
 # spacex-dashboard-react
-Author: Dominic Lucenario </br>
-Contributors: 
 
 </br>
-An administrative dashboard for displaying Space-X data. Deployed working version can be found at (https://spacex.koalafiedcoder.com).
+An administrative dashboard for displaying Space-X data. Deployed working version can be found at:
 
-The following modules for this project are the following. 
+</br> (https://spacex.koalafiedcoder.com).
+
+The following modules for this project are the following. </br>
 I. Dashboards </br>
 II. Launches</br>
 III. Missions</br>
