@@ -1,0 +1,31 @@
+.metricList .logoContainer {
+    border-style: solid;
+    width: 40px;
+    height: 40px;
+    padding: 15px;
+    border-radius: 50%;
+    border-color: #FFFFFF;
+    border-width: 2px;
+}
+
+.metricList .cardLogo{
+    width: 40px;
+    height: 40px;
+}
+
+.metricList .count {
+    color: #ffffff;
+    font-size: 28px;
+}
+
+.metricList .countTitle {
+    color: #9a9a9a
+}
+
+.metricList .actionInCard {
+    padding-top: 10px;
+    color: #9a9a9a;
+    display: inline-flex;
+    align-items: 'center';
+    cursor: pointer;
+}
