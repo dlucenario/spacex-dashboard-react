@@ -2,7 +2,6 @@ import * as actionTypes from '../actions/actionTypes';
 import axios from '../../axios-config';
 
 export const getLaunches = () => {
-    
     //get the flight number only
     return dispatch => {
         axios.get('/launches?filter=flight_number')
@@ -25,7 +24,7 @@ export const setLaunches = (launchList) => {
 }
 
 export const getUpcomingLaunches = () => {
-    //get the flight number only
+    
     return dispatch => {
         axios.get('/launches/upcoming?limit=5&filter=mission_name,launch_date_unix')
         .then(response => {
@@ -86,5 +85,48 @@ export const setFeatureLaunch = (featureLaunch) => {
     return {
         type: actionTypes.SET_FEATURE_LAUNCH,
         featureLaunch: featureLaunch
+    }
+}
+
+export const getLaunchListDetailed = () => {
+    return dispatch => {
+        axios.get('/launches?filter=flight_number,mission_name,launch_date_unix,rocket,upcoming&order=desc')
+        .then(response => {
+            if(response.status === 200) {
+                dispatch(setLaunchListDetailed(response.data));
+            }
+        })
+        .catch( error => {
+            // dispatch(action.showFeedback('Fail to Get Last Updated'));
+        })
+    }
+}
+
+export const setLaunchListDetailed = (launchList) => {
+    return {
+        type: actionTypes.SET_LAUNCHES_LIST,
+        launchList: launchList
+    }
+}
+
+export const getOneLaunch = (launchNumber) => {
+
+    return dispatch => {
+        axios.get(`/launches/${launchNumber}`)
+        .then(response => {
+            if(response.status === 200) {
+                dispatch(setOneLaunch(response.data));
+            }
+        })
+        .catch( error => {
+            // dispatch(action.showFeedback('Fail to Get Last Updated'));
+        })
+    }
+}
+
+export const setOneLaunch = (oneLaunch) => {
+    return {
+        type: actionTypes.SET_ONE_LAUNCH,
+        oneLaunch: oneLaunch
     }
 }

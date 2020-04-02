@@ -2,7 +2,9 @@ export {
     getLaunches,
     getUpcomingLaunches,
     getRecentLaunches,
-    getFeatureLaunch
+    getFeatureLaunch,
+    getLaunchListDetailed,
+    getOneLaunch,
 } from './launchActions';
 
 export {
