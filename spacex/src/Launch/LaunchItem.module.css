@@ -1,0 +1,48 @@
+.launchItem {
+    margin-top: 5px;
+}
+
+.launchItem .launchItemDetailContainer {
+    padding: 20px;
+    display: block;
+}
+
+.launchItem .launchPatchContainer {
+    border-style: solid;
+    width: 100px;
+    height: 100px;
+    padding: 15px;
+    border-radius: 50%;
+    border-color: #FFFFFF;
+    border-width: 2px;
+    margin-right: 30px;
+}
+
+.launchItem .launchPatchImage {
+    width: 100px;
+    height: 100px;
+}
+
+.launchItem .launchItemHeaderContainer {
+    display: flex;
+    align-items: center;
+}
+
+.launchItem .launchItemTitle {
+    color: #ffffff;
+    font-size: 38px;
+    display: inline;
+    
+}
+
+.launchItem .launchItemStatusContainer {
+
+}
+
+.launchItem .launchItemDescriptionContainer {
+
+}
+
+.launchItem .launchTableContainer {
+
+}

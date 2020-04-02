@@ -8,6 +8,9 @@ const initialState = {
     upcomingLaunches: [],
     recentLaunches: [],
     featureLaunch: {},
+    oneLaunch: {},
+    upcomingLaunchLength: 0,
+    finishedLaunchLength: 0
 }
 
 const setLaunches = (state,action) => {
@@ -71,12 +74,85 @@ const setFeatureLaunch = (state,action) => {
     });
 }
 
+const setLaunchListDetailed = (state,action) => {
+
+    let upcomingLaunchLength = 0;
+    let finishedLaunchLength = 0;
+
+    const launchList = action.launchList.map( (element) => {
+        const newDate = new Date(element.launch_date_unix * 1000);
+        const tempDate = `${convertMonth(newDate.getMonth())} ${newDate.getDate()}, ${newDate.getFullYear()}`;
+
+        if(element.upcoming === true) {
+            upcomingLaunchLength++
+        } else {
+            finishedLaunchLength++;
+        }
+
+        return {
+            flight_number: element.flight_number,
+            mission_name: element.mission_name,
+            upcoming: element.upcoming,
+            date: tempDate,
+            rocket: element.rocket.rocket_name,
+            customer: element.rocket.second_stage.payloads[0].customers[0]
+        }
+    });
+
+    return updateObject(state, {
+        launches: launchList,
+        upcomingLaunchLength: upcomingLaunchLength,
+        finishedLaunchLength: finishedLaunchLength
+    });
+
+}
+
+const setOneLaunch = (state,action) => {
+
+    const newDate = new Date(action.oneLaunch.launch_date_unix * 1000);
+    const tempDate = `${convertMonth(newDate.getMonth())} ${newDate.getDate()}, ${newDate.getFullYear()}`;
+
+    // //for convenient traversing
+    const oneLaunchTableData = {
+        launchDate: {text: 'Launch Date', value: tempDate},
+        rocket: {text: 'Rocket', value: action.oneLaunch.rocket.rocket_name},
+        core: {text: 'Core', value: action.oneLaunch.rocket.first_stage.cores[0].core_serial},
+        payload: {text: 'Payload', value: action.oneLaunch.rocket.second_stage.payloads[0].payload_id},
+        customer: {text: 'Customer', value: action.oneLaunch.rocket.second_stage.payloads[0].customers[0]},
+        nationality : {text:'Nationality', value: action.oneLaunch.rocket.second_stage.payloads[0].nationality},
+        payloadType :  {text: 'Payload Type', value: action.oneLaunch.rocket.second_stage.payloads[0].payload_type},
+        payloadWeight :  {text:'Payload Weight', value: action.oneLaunch.rocket.second_stage.payloads[0].payload_mass_kg},
+        ships : {text: 'Ships', value:action.oneLaunch.ships},
+        launchSite: {text: 'Launch Site', value: action.oneLaunch.launch_site.site_name}
+    }
+
+    const oneLaunch = {
+        missionPatchLink: action.oneLaunch.links.mission_patch_small,
+        flightNumber: action.oneLaunch.flight_number,
+        launchSuccess: action.oneLaunch.launch_success,
+        landSuccess: action.oneLaunch.rocket.first_stage.cores[0].land_success,
+        missionName: action.oneLaunch.mission_name,
+        missionId: action.oneLaunch.mission_id,
+        details: action.oneLaunch.details,
+        tableData: oneLaunchTableData,
+        videoId: action.oneLaunch.links.youtube_id,
+        galleryLinks: action.oneLaunch.links.flickr_images
+    }
+    // console.log(oneLaunch)
+    return updateObject(state, {
+        oneLaunch: oneLaunch
+    });
+}
+
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SET_LAUNCHES: return setLaunches(state,action);
         case actionTypes.SET_UPCOMING_LAUNCHES: return setUpcomingLaunches(state,action);
         case actionTypes.SET_RECENT_LAUNCHES: return setRecentLaunches(state,action);
         case actionTypes.SET_FEATURE_LAUNCH: return setFeatureLaunch(state,action);
+        case actionTypes.SET_LAUNCHES_LIST: return setLaunchListDetailed(state,action);
+        case actionTypes.SET_ONE_LAUNCH: return setOneLaunch(state,action);
         default: return state;
     }
 };

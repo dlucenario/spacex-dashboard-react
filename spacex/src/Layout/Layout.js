@@ -7,6 +7,7 @@ import Appbar from '../Appbar/Appbar';
 import Footer from '../Footer/Footer';
 
 import DashboardModule from '../Dashboard/Dashboard';
+import LaunchModule from '../Launch/Launch';
 import NotFound from '../httpPages/NotFound';
 import Building from '../httpPages/Building';
 
@@ -24,7 +25,10 @@ class Layout extends React.Component {
                             <Switch>
                                 <Route exact path="/" component = {DashboardModule}></Route>
                                 <Route exact path="/dashboard" component = {DashboardModule}></Route>
-                                <Route path="/launch" component = {Building}></Route>
+                                <Route path="/launch" component = {LaunchModule}></Route>
+                                {/* <Route path="/launch/:id" render={(props) => (
+                                    <LaunchModule key={props.match.params.id} {...props} />)
+                                } /> */}
                                 <Route path="/mission" component = {Building}></Route>
                                 <Route path="/site" component = {Building}></Route>
                                 <Route path="/about" component = {Building}></Route>

@@ -5,3 +5,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #212529;
 }
+
+.customContainer {
+  background-color: #27293D;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #696969;
+  border-width: 2px;
+  padding: 15px;
+}
