@@ -40,7 +40,6 @@ export default function FeatureLaunch(props) {
           seconds: Math.floor((difference) % 60)
         };
       }
-      // console.log(timeLeft);
       return timeLeft;
     };
 
@@ -54,20 +53,6 @@ export default function FeatureLaunch(props) {
       return () => {clearTimeout(timeoutId)}
     });
     
-    // const timerComponents = [];
-    // Object.keys(timeLeft).forEach(interval => {
-    //   if (!timeLeft[interval]) {
-    //     return;
-    //   }
-  
-    //   timerComponents.push(
-    //     <span className = {classes.number}>
-    //       {timeLeft[interval]}
-    //     </span>
-    //   );
-    // });
-
-    // console.log(timeLeft);
     return(
       
         <div className = {dashboardClasses.dashboardCardContainer}>

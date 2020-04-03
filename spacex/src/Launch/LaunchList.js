@@ -11,8 +11,8 @@ import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 
 import { NavLink } from 'react-router-dom';
-import HelpIcon from '@material-ui/icons/Help';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -27,21 +27,11 @@ const useStyles = makeStyles({
     tableContent: {
         color: '#9a9a9a'
     },
-    tableContentGreen: {
-        color: 'green'
-    },
-    tableContentRed: {
-        color: 'red'
-    },
     missionLink: {
         color: '#ffffff',
         textDecoration: 'none'
     },
-    linkContainer: {
-
-        padding: '5px',
-        borderRadius: '5px',
-
+    customButton: {
         backgroundColor: '#3358f4'
     }
 });
@@ -72,8 +62,8 @@ export default function LaunchList(props) {
                         <TableCell classes = {{root: materialClasses.tableHeader}} >mission name</TableCell>
                         <TableCell classes = {{root: materialClasses.tableHeader}} align="right">flight #</TableCell>
                         <TableCell classes = {{root: materialClasses.tableHeader}} align="right">launch date</TableCell>
-                        <TableCell classes = {{root: materialClasses.tableHeader}} align="right">rocket</TableCell>
                         <TableCell classes = {{root: materialClasses.tableHeader}} align="right">customer</TableCell>
+                        <TableCell classes = {{root: materialClasses.tableHeader}} align="right">view</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -87,35 +77,28 @@ export default function LaunchList(props) {
 
                                 <NavLink to={`/launch/${row.flight_number}`} className = {materialClasses.missionLink}>
                                     {row.mission_name}
-                                    <IconButton className = {materialClasses.missionLink}  aria-label="delete">
-                                        <HelpIcon />
-                                    </IconButton>
                                 </NavLink>
 
                         </TableCell>
                         <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.flight_number}</TableCell>
                         <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.date}</TableCell>
-                        <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.rocket}</TableCell>   
                         <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.customer}</TableCell>
+                        <TableCell classes = {{root: materialClasses.tableContent}} align="right">
+                            <Button classes = {{root: materialClasses.customButton }} variant="contained" size="small" 
+                                    startIcon={< ArrowDownwardIcon style = {{fill: '#ffffff'}} />}>
+                                <NavLink to={`/launch/${row.flight_number}`} className = {materialClasses.missionLink}>
+                                    VIEW
+                                </NavLink>
+                            </Button>
+                        </TableCell> 
                         </TableRow>
                     ))}
-
-                    {/* {props.launchList.map(row => (
-                        <TableRow key={row.mission_name}>
-                        <TableCell classes = {{root: materialClasses.tableContent}} component="th" scope="row">
-                            {row.mission_name}
-                        </TableCell>
-                        <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.flight_number}</TableCell>
-                        <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.date}</TableCell>
-                        <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.rocket}</TableCell>   
-                        <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.customer}</TableCell>
-                        </TableRow>
-                    ))} */}
                     
                     </TableBody>
                     <TableFooter >
                         <TableRow >
                             <TablePagination
+                            classes = {{root: materialClasses.tableContent}}
                             rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                             colSpan={5}
                             count={props.launchList.length}

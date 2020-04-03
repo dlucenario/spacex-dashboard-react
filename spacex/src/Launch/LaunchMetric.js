@@ -6,7 +6,7 @@ import classes from '../Dashboard/Metrics/MetricList.module.css';
 
 export default function LaunchMetric(props) {
     const launchIcon = require('../images/icons/rocket.svg');
-
+    const planIcon = require('../images/icons/plan.svg');
     return(
         <Grid container direction = "column" spacing = {2}>
             <Grid item lg = {12}>
@@ -23,7 +23,7 @@ export default function LaunchMetric(props) {
             <Grid item lg = {12}>
                 <div className = {classes.metricList}>
                     <Metric 
-                        icon = {launchIcon}
+                        icon = {planIcon}
                         altLogo = {'pending-launches'}
                         title = {'Upcoming Launches'}
                         number = {props.upcomingLaunchLength}

@@ -113,17 +113,27 @@ const setOneLaunch = (state,action) => {
     const tempDate = `${convertMonth(newDate.getMonth())} ${newDate.getDate()}, ${newDate.getFullYear()}`;
 
     // //for convenient traversing
-    const oneLaunchTableData = {
+    const launchTable = {
         launchDate: {text: 'Launch Date', value: tempDate},
         rocket: {text: 'Rocket', value: action.oneLaunch.rocket.rocket_name},
         core: {text: 'Core', value: action.oneLaunch.rocket.first_stage.cores[0].core_serial},
+        ships : {text: 'Ships', value:action.oneLaunch.ships},
+        launchSite: {text: 'Launch Site', value: action.oneLaunch.launch_site.site_name}
+    }
+
+    const payloadTable = {
         payload: {text: 'Payload', value: action.oneLaunch.rocket.second_stage.payloads[0].payload_id},
         customer: {text: 'Customer', value: action.oneLaunch.rocket.second_stage.payloads[0].customers[0]},
         nationality : {text:'Nationality', value: action.oneLaunch.rocket.second_stage.payloads[0].nationality},
         payloadType :  {text: 'Payload Type', value: action.oneLaunch.rocket.second_stage.payloads[0].payload_type},
-        payloadWeight :  {text:'Payload Weight', value: action.oneLaunch.rocket.second_stage.payloads[0].payload_mass_kg},
-        ships : {text: 'Ships', value:action.oneLaunch.ships},
-        launchSite: {text: 'Launch Site', value: action.oneLaunch.launch_site.site_name}
+        payloadWeight :  {text:'Payload Weight(KG)', value: action.oneLaunch.rocket.second_stage.payloads[0].payload_mass_kg},
+    }
+
+    const oneLaunchLinks = {
+        reddit: action.oneLaunch.links.reddit_campaign,
+        blog: action.oneLaunch.links.article_link,
+        wiki: action.oneLaunch.links.wikipedia,
+        rawData: `https://api.spacexdata.com/v3/launches/${action.oneLaunch.flight_number}?pretty=true`
     }
 
     const oneLaunch = {
@@ -134,11 +144,13 @@ const setOneLaunch = (state,action) => {
         missionName: action.oneLaunch.mission_name,
         missionId: action.oneLaunch.mission_id,
         details: action.oneLaunch.details,
-        tableData: oneLaunchTableData,
+        payloadTable: payloadTable,
+        launchTable: launchTable,
         videoId: action.oneLaunch.links.youtube_id,
-        galleryLinks: action.oneLaunch.links.flickr_images
+        galleryLinks: action.oneLaunch.links.flickr_images,
+        links: oneLaunchLinks
     }
-    // console.log(oneLaunch)
+
     return updateObject(state, {
         oneLaunch: oneLaunch
     });
