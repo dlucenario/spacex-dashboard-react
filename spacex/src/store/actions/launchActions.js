@@ -68,8 +68,10 @@ export const setRecentLaunches = (recentLaunches) => {
 }
 
 export const getFeatureLaunch = () => {
+    // hardcoded in the meantime
+    // have to derive own mechanism of detecting pending launches
     return dispatch => {
-        axios.get('/launches/next')
+        axios.get('/launches/95')
         .then(response => {
             if(response.status === 200) {
                 dispatch(setFeatureLaunch(response.data));
