@@ -29,6 +29,14 @@ i. Payload Statistics (Highest Payload - Bar Graph)</br>
 
 II. Launches </br>
 The following module pertains to Space-X launch data. Two fundamental views are going to be implemented; (1) Lists and (2) Single Launches. Refer to the wireframes for a mock-up design for these views. Based on the anatomy of the launch data provided, only the following fields will be considered: flight number, mission name, mission id, launch date, rocket details, payload details, launch site, flickr_images, launch_status, land_status, and landing details.</br>
+Possible Button Icon Links
+
+Reddit
+Wikipedia
+Blog Post
+Press Kit
+Raw Data
+
 
 III. Missions (Version 1.1)</br>
 
@@ -47,15 +55,6 @@ Redux-Thunk - middleware for Redux <br/>
 Axios - for HTTP request <br/>
 Material - for base design <br/>
 
-Commands for Bootstraping
-npm install --save redux <br/>
-npm install --save redux-thunk <br/>
-npm install --save react-redux <br/>
-npm install --save axios <br/>
-npm install --save @material-ui/core <br/>
-npm install --save react-router-dom <br/>
-npm install --save chart.js <br/>
-npm install --save react-countup <br/>
 
 Credits
 Data Source: https://docs.spacexdata.com/?version=latest <br/>
