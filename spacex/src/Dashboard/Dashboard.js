@@ -96,8 +96,6 @@ const mapDispatchToProps = dispatch => {
         getRecentLaunches: () => dispatch(actions.getRecentLaunches()),
         getFeatureLaunch: () => dispatch(actions.getFeatureLaunch()),
         getPayloadList: () => dispatch(actions.getPayloads())
-    //    selectUserRoles:(field,value) => dispatch(actions.selectUserGroup(field,value))
-       
     };
 };
 
