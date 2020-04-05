@@ -72,7 +72,7 @@ export default function LaunchList(props) {
                             ? props.launchList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             : props.launchList
                         ).map((row) => (
-                        <TableRow key={row.mission_name}>
+                        <TableRow key={row.flight_number+'-'+row.mission_name}>
                         <TableCell component="th" scope="row">
 
                                 <NavLink to={`/launch/${row.flight_number}`} className = {materialClasses.missionLink}>
