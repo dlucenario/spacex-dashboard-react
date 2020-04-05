@@ -9,8 +9,8 @@ body {
 .customContainer {
   background-color: #27293D;
   border-radius: 5px;
-  border-style: solid;
+  /* border-style: solid;
   border-color: #696969;
-  border-width: 2px;
+  border-width: 2px; */
   padding: 15px;
 }
