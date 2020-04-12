@@ -2,11 +2,13 @@ import React from 'react';
 import Chart from "chart.js";
 import classes from './Dashboard.module.css';
 
+import Container from '../components/Container';
 import { Typography } from '@material-ui/core';
+import payloadIcon from '../images/icons/product.svg';
 
-Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif"
-Chart.defaults.global.legend.display = false;
-Chart.defaults.global.elements.line.tension = 0.3;
+// Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif"
+// Chart.defaults.global.legend.display = true;
+// Chart.defaults.global.elements.line.tension = 0.3;
 let myLineChart;
 
 class PayloadChart extends React.Component {
@@ -28,10 +30,11 @@ class PayloadChart extends React.Component {
             dataList.push(this.props.chartData[x].kilograms);
             labelList.push(this.props.chartData[x].payloadID);
         }
+
         const myChartRef = this.chartRef.current.getContext("2d");
         const gradientLine = myChartRef.createLinearGradient(500,0,100,0);
-        gradientLine.addColorStop(0, '#3358f4');
-        gradientLine.addColorStop(1, '#1d8cf8');
+        gradientLine.addColorStop(0, '#1B262C');
+        gradientLine.addColorStop(1, '#1B262C');
 
         if (typeof myLineChart !== "undefined") myLineChart.destroy();
 
@@ -44,10 +47,8 @@ class PayloadChart extends React.Component {
                     {
                         label: "Kilograms",
                         data: dataList,
-                        backgroundColor: '#27293D',
-                        borderColor: gradientLine,
-                        borderWidth: 2,
-                        fill: true,
+                        backgroundColor: '#3282b8',
+                        fill: false,
 
                     }
                 ]
@@ -55,6 +56,9 @@ class PayloadChart extends React.Component {
             options: {
                 //Customize chart options
                 responsive: true,
+                legend: {
+                    display: false
+                },
                 maintainAspectRatio: false,
                 scales: {
                     xAxes: [{
@@ -86,20 +90,34 @@ class PayloadChart extends React.Component {
 
     render() {
         return(
-            <div className = {classes.dashboardCardContainer}>
-                <div style = {{height: '330px', paddingBottom: '30px'}}>
-                <Typography style = {{color:'#9a9a9a', paddingBottom: '10px'}}>
-                    Heaviest Payloads
-                </Typography>
-                {/* <Typography style = {{color:'#ffffff', fontSize: '32px' ,paddingBottom: '10px'}}>
-                    Payloads
-                </Typography> */}
+
+            <Container
+            logo = {payloadIcon}
+            title = {`Heaviest Payload`}
+            headerExist = {true}>
+                <div style ={{position: 'relative', height: '300px'}} >
                 <canvas
-                    id="myChart"
-                    ref={this.chartRef}
-                />
+                     id="myChart"
+                     ref={this.chartRef}/>
                 </div>
-            </div>
+
+
+            </Container>
+            // <div className = {classes.dashboardCardContainer}>
+            //     <div style = {{height: '330px', paddingBottom: '30px',position: 'relative'}}>
+            //     <Typography style = {{color:'#9a9a9a', paddingBottom: '10px'}}>
+            //         Heaviest Payloads
+            //     </Typography>
+            //     {/* <Typography style = {{color:'#ffffff', fontSize: '32px' ,paddingBottom: '10px'}}>
+            //         Payloads
+            //     </Typography> */}
+            //     <canvas
+            //         id="myChart"
+            //         ref={this.chartRef}
+            //     />
+            //     </div>
+            // </div>
+
         )
     }
 

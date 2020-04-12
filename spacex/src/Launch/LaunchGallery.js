@@ -30,9 +30,7 @@ export default function LaunchGallery(props) {
     }
     return(
         <div>
-            <Typography classes = {{root: materialClasses.galleryTitle}}>
-                Launch Gallery
-            </Typography>
+
             <Grid container spacing={2} alignItems="center" justify="center">
                 {gallery}
             </Grid>

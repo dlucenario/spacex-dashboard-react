@@ -3,7 +3,7 @@ body {
   font-family: 'Lato', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #212529;
+  background-color: #121212;
 }
 
 .customContainer {
@@ -13,4 +13,16 @@ body {
   border-color: #696969;
   border-width: 2px; */
   padding: 15px;
+}
+
+.primaryText {
+  color: #ffffff;
+  font-size: 20px;
+  margin: 0;
+}
+
+.secondaryText {
+  color: #DEE5E5;
+  font-size: 16px;
+  margin: 0;
 }

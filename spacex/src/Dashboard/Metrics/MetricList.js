@@ -1,7 +1,9 @@
 import React from 'react';
 import Metric from './Metric';
+import Metric2 from '../../components/Metric';
 import Grid from '@material-ui/core/Grid';
 
+import RefreshIcon from '@material-ui/icons/Refresh';
 import classes from './MetricList.module.css';
 
 export default function MetricList(props) {
@@ -16,59 +18,33 @@ export default function MetricList(props) {
     return(
         
         <div className = {classes.metricList}>
-            <Grid container spacing = {2}>
-                <Grid item lg = {3}>
-                    <Metric 
+            <Grid container spacing = {2}  justify="space-between" alignItems="stretch">
+                <Grid item lg = {12}>
+                    <Metric2 
                         icon = {launchIcon}
                         altLogo = {'launch-logo'}
                         title = {'Launches'}
                         number = {props.launchesLength}
-                        refresh = {props.refreshLaunch}
-                    ></Metric>
+                        action = {props.refreshLaunch}
+                        actionIcon = {<RefreshIcon></RefreshIcon>}
+                        actionTitle = {'Update Now'}
+                    ></Metric2>
                 </Grid>
-                <Grid item lg = {3}>
-                    <Metric 
-                        icon = {missionIcon} 
+
+                <Grid item lg = {12}>
+                    <Metric2 
+                        icon = {missionIcon}
                         altLogo = {'mission-logo'}
                         title = {'Missions'}
                         number = {props.missionLength}
-                        refresh = {props.refreshMissions}
-                    ></Metric>
+                        action = {props.refreshLaunch}
+                        actionIcon = {<RefreshIcon></RefreshIcon>}
+                        actionTitle = {'Update Now'}
+                    ></Metric2>
                 </Grid>
-                {/* <Grid item lg = {2}>
-                    <Metric 
-                        icon = {rocketIcon} 
-                        altLogo = {'rocket-logo'}
-                        title = {'Rockets'}
-                        number = {this.props.rockets.length}
-                    ></Metric>
-                </Grid>
-                <Grid item lg = {2}>
-                    <Metric 
-                        icon = {dragonIcon} 
-                        altLogo = {'dragon-logo'}
-                        title = {'Dragons'}
-                        number = {this.props.dragons.length}
-                    ></Metric>
-                </Grid> */}
-                <Grid item lg = {3}>
-                    <Metric 
-                        icon = {cpuIcon} 
-                        altLogo = {'core-logo'}
-                        title = {'Cores'}
-                        number = {props.coreLength}
-                        refresh = {props.refreshCores}
-                    ></Metric>
-                </Grid>
-                <Grid item lg = {3}>
-                    <Metric 
-                        icon = {shipIcon} 
-                        altLogo = {'ship-logo'}
-                        title = {'Ships'}
-                        number = {props.shipLength}
-                        refresh = {props.refreshShips}
-                    ></Metric>
-                </Grid>
+
+
+
             </Grid>
         </div>
     )

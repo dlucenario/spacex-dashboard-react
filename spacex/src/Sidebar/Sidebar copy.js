@@ -18,28 +18,25 @@ import infoIcon from '../images/icons/info.svg';
 import payloadIcon from '../images/icons/product.svg';
 import rocketIcon from '../images/icons/project.svg';
 
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-
 import { NavLink } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
+
+const drawerWidth = 240;
+
 const useStyles = makeStyles(theme => ({
-    sidebarContainer: {
-        position: 'sticky',
-        top: '30px',
-    },
-    linkContainer: {
+    sidebar: {
         height: '85vh',
+        marginLeft: '20px',
+        marginTop: '40px',
         borderRadius: '5px',
         backgroundImage: 'linear-gradient(#1B262C,#0F4C75)',
-        overflow: 'hidden'
     },
     divider: {
         backgroundColor: '#FFFFFF',
         height: '2px',
-        width: '85%',
+        width: '90%',
         margin: '0 auto'
     },
     navImg: {
@@ -51,27 +48,50 @@ const useStyles = makeStyles(theme => ({
         fontSize: '16px',
         color: '#ffffff'
     },
-    drawerOpen: {
-        width: '200px',
-        transition: 'width 1s'
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap'
+  },
+  drawerOpen: {
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerClose: {
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: theme.spacing(7) + 1,
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing(9) + 1,
     },
-    drawerClose: {
-        width: '50px',
-        transition: 'width 1s',
-    }
+  },
 }));
 
 export default function Sidebar(props) {
     const classes = useStyles();
+
     return(
-        <div className = {classes.sidebarContainer}>
-            <IconButton onClick = {props.toggleDrawer} aria-label="github">
-                <MenuIcon style = {{fill:'#ffffff'}} />
-            </IconButton>
-            <div className = {clsx(classes.linkContainer, {
-                [classes.drawerOpen]: props.drawer,
-                [classes.drawerClose]: !props.drawer,
-            })}>    
+        <div>
+                <Drawer
+                    variant="permanent"
+                    className={clsx(classes.drawer, {
+                        [classes.drawerOpen]: props.drawer,
+                        [classes.drawerClose]: !props.drawer,
+                    })}
+                    classes={{
+                        paper: clsx(classes.sidebar, {
+                            [classes.drawerOpen]: props.drawer,
+                            [classes.drawerClose]: !props.drawer,
+                        }),
+                    }}
+                >
+                    
                 <List>
                     <ListItem>
                         <ListItemIcon>
@@ -146,8 +166,8 @@ export default function Sidebar(props) {
                         />
                     </ListItem>
                 </List>
-            </div>
+                
+            </Drawer>
         </div>
-
     )
 }

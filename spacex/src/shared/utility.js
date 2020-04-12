@@ -5,6 +5,25 @@ export const updateObject = (oldObject, updatedProperties) => {
     };
 };
 
+export const convertStatus = (status) => {
+    
+    let statusString = '';
+    switch(status) {
+        case true:
+            statusString = 'Success';
+            break;
+        case false:
+            statusString = 'Fail';
+            break;
+        case null:
+            statusString = 'NA';
+            break;
+        default:
+            statusString = 'NA';
+    }
+    return statusString;
+}
+
 export const convertMonth = (monthNumber) => {
 
     const month = parseInt(monthNumber);

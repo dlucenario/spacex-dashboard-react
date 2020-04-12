@@ -1,15 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
-import classes from './Dashboard.module.css';
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 
+import Grid from '@material-ui/core/Grid';
+import clsx from 'clsx';
+import Container from '../components/Container';
+import clockIcon from '../images/icons/clock.svg';
+import CustomButton from '../components/Button';
 function formatLandStatus(status) {
     
     let statusString = '';
@@ -62,44 +59,83 @@ const useStyles = makeStyles({
     },
     tableContentRed: {
         color: 'red'
+    },
+    patchLogo: {
+        width: '60px',
+        height: '60px',
+        filter: 'grayscale(70%)'
+    },
+    paragraph: {
+        margin: 0,
+        marginBottom: '10px'
+    },
+    success: {
+        color: '#6DD400'
+    },
+    fail: {
+        color: '#E02020'
+    },
+    date: {
+        color: '#DEE5E5'
+    },
+    missionName: {
+        color: '#ffffff',
+        fontWeight: 'bold',
+        fontSize: '20px'
+    },
+    status: {
+        color: '#ffffff',
+        display: 'inline',
+        marginRight: '5px'
+    },
+    item: {
+        padding: '10px',
+        marginBottom: '12px',
     }
 });
 
 export default function RecentLaunches(props) {
-    const materialClasses = useStyles();
+    const  classes = useStyles();
     return(
-        <div className = {classes.dashboardCardContainer}>
-            <Typography classes = {{root: materialClasses.tableTitle}}>
-                Recent Launches
-            </Typography>
-            <TableContainer>
-                <Table className={classes.table} aria-label="simple table">
-                    <TableHead>
-                    <TableRow>
-                        <TableCell classes = {{root: materialClasses.tableHeader}} >mission</TableCell>
-                        <TableCell classes = {{root: materialClasses.tableHeader}} align="right">LAUNCH DATE</TableCell>
-                        <TableCell classes = {{root: materialClasses.tableHeader}} align="right">LAUNCH STATUS</TableCell>
-                        <TableCell classes = {{root: materialClasses.tableHeader}} align="right">LAND STATUS</TableCell>
-                    </TableRow>
-                    </TableHead>
-                    <TableBody>
-                    {props.launchData.map(row => (
-                        <TableRow key={row.mission_name}>
-                        <TableCell classes = {{root: materialClasses.tableContent}} component="th" scope="row">
-                            {row.mission_name}
-                        </TableCell>
-                        <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.date}</TableCell>
-                        <TableCell classes = {{root: decorateStatus(row.launch_success,materialClasses)}} align="right">
-                            {row.launch_success ? 'Success' : 'Fail'}
-                        </TableCell>
-                        <TableCell classes = {{root: decorateStatus(row.land_success,materialClasses)}} align="right">
-                            {formatLandStatus(row.land_success)}
-                        </TableCell>
-                        </TableRow>
-                    ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </div>
+        <Container
+        logo = {clockIcon}
+        title = {`Recent Launches`}
+        headerExist = {true}>
+            {props.launchData.map( (element) => {
+                return(
+                    <Grid container spacing = {2} className = {clsx(classes.item)} justify="center" alignItems="center">
+                        <Grid item lg = {2}>
+                            <img 
+                                className = {clsx(classes.patchLogo)}
+                                src = {element.missionPatch} alt = {element.mission_name}></img>
+                        </Grid>
+                        <Grid item lg = {8}>
+                            <p className = {clsx(classes.paragraph,classes.status)}>
+                                Launch:
+                                <span className = {clsx({
+                                    [classes.success]: element.launch_success,
+                                    [classes.fail]: !element.launch_success
+                                    })}>{ formatLandStatus(element.launch_success) }
+                                </span>
+                            </p>
+                            <p className = {clsx(classes.paragraph,classes.status)}>
+                               Land: 
+                               <span className = {clsx({
+                                    [classes.success]: element.land_success,
+                                    [classes.fail]: element.land_success === false
+                                    })}>{ formatLandStatus(element.land_success) }
+                                </span>
+                            </p>
+                            <p className = {clsx(classes.paragraph,classes.date)}>{element.date}</p>
+                            <p className = {clsx(classes.paragraph,classes.missionName)}>{element.mission_name}</p>
+                        </Grid>
+                        <Grid item lg = {2}>
+                            <CustomButton>View</CustomButton>
+                        </Grid>
+                    </Grid>
+                )
+            })}
+
+        </Container>
     )
 }

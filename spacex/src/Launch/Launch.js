@@ -13,33 +13,37 @@ class Launch extends React.Component{
 
     componentDidMount() {
         this.props.getLaunchList();
-        //check for empty
-        //this.props.getOneLaunch(this.props.match.params.id);
-        //console.log('hehe');
     }
 
     render() {
         return(
             <div>
-                <Grid container spacing = {2}>
-                    <Grid item lg = {8}>
-                        <LaunchList
-                            launchList = {this.props.launches}
-                        ></LaunchList>
+                <Grid container direction = 'row' spacing = {2}>
+                    <Grid item lg = {12}>
+                        <Grid container spacing = {2}>
+                            <Grid item lg = {8}>
+                                <LaunchList
+                                    launchList = {this.props.launches}
+                                ></LaunchList>
+                            </Grid>
+                            <Grid item lg = {4}>
+                                <LaunchMetric
+                                    upcomingLaunchLength = {this.props.upcomingLaunchLength}
+                                    finishedLaunchLength = {this.props.finishedLaunchLength}
+                                    refreshLaunch = {this.props.getLaunchList}
+                                ></LaunchMetric>
+                            </Grid>
+                        </Grid>
                     </Grid>
-                    <Grid item lg = {4}>
-                        <LaunchMetric
-                            upcomingLaunchLength = {this.props.upcomingLaunchLength}
-                            finishedLaunchLength = {this.props.finishedLaunchLength}
-                            refreshLaunch = {this.props.getLaunchList}
-                        ></LaunchMetric>
+                    <Grid item lg = {12}>
+                        <Route path="/launch/:id" render = {(props)=> (
+                            <LaunchItem  key={props.match.params.id} id = {props.match.params.id}></LaunchItem>
+                            )}>
+                        </Route>
                     </Grid>
                 </Grid>
 
-                <Route path="/launch/:id" render = {(props)=> (
-                    <LaunchItem  key={props.match.params.id} id = {props.match.params.id}></LaunchItem>
-                )}>
-                </Route>
+
 
             </div>
         )
@@ -48,7 +52,7 @@ class Launch extends React.Component{
 
 const mapStateToProps = state => {
     return {
-        launches: state.launchReducer.launches,
+        launches: state.launchReducer.launchListDetailed,
         upcomingLaunchLength: state.launchReducer.upcomingLaunchLength,
         finishedLaunchLength: state.launchReducer.finishedLaunchLength,
         oneLaunch: state.launchReducer.oneLaunch

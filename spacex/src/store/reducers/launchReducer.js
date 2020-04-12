@@ -10,12 +10,25 @@ const initialState = {
     featureLaunch: {},
     oneLaunch: {},
     upcomingLaunchLength: 0,
-    finishedLaunchLength: 0
+    finishedLaunchLength: 0,
+    launchListDetailed: []
 }
 
 const setLaunches = (state,action) => {
+
+    const launchList = action.launchList.map( (element) => {
+        const newDate = new Date(element.launch_date_unix * 1000);
+        const tempDate = `${convertMonth(newDate.getMonth())} ${newDate.getDate()}, ${newDate.getFullYear()}`;
+        
+        return {
+            flightNumber: element.flight_number,
+            launchDate: tempDate,
+            nationality: element.rocket.second_stage.payloads[0].nationality
+            
+        }
+    });
     return updateObject(state, {
-        launches: action.launchList
+        launches: launchList
     });
 }
 
@@ -27,7 +40,8 @@ const setUpcomingLaunches = (state,action) => {
         const tempDate = `${convertMonth(newDate.getMonth())} ${newDate.getDate()}, ${newDate.getFullYear()}`;
         return {
             mission_name: element.mission_name,
-            date: tempDate
+            date: tempDate,
+            rocket: element.rocket.rocket_name
         }
     });
 
@@ -46,7 +60,8 @@ const setRecentLaunches = (state,action) => {
             mission_name: element.mission_name,
             date: tempDate,
             launch_success: element.launch_success,
-            land_success: element.rocket.first_stage.cores[0].land_success
+            land_success: element.rocket.first_stage.cores[0].land_success,
+            missionPatch: element.links['mission_patch_small']
         }
     });
 
@@ -100,7 +115,7 @@ const setLaunchListDetailed = (state,action) => {
     });
 
     return updateObject(state, {
-        launches: launchList,
+        launchListDetailed: launchList,
         upcomingLaunchLength: upcomingLaunchLength,
         finishedLaunchLength: finishedLaunchLength
     });
@@ -144,6 +159,7 @@ const setOneLaunch = (state,action) => {
         missionName: action.oneLaunch.mission_name,
         missionId: action.oneLaunch.mission_id,
         details: action.oneLaunch.details,
+        upcoming: action.oneLaunch.upcoming,
         payloadTable: payloadTable,
         launchTable: launchTable,
         videoId: action.oneLaunch.links.youtube_id,
