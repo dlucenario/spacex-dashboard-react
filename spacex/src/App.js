@@ -4,11 +4,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
-import Layout from './Layout/Layout';
+import Layout from './Layout/Layout2';
 
 const theme = createMuiTheme({
   typography : {
-    fontFamily: "Lato"
+    fontFamily: "Lato",
   },
   // palette: {
   //   primary: {

@@ -13,8 +13,10 @@ import TablePagination from '@material-ui/core/TablePagination';
 import { NavLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import LauncIcon from '../images/icons/rocket.svg';
 
-import Typography from '@material-ui/core/Typography';
+import CustomButton from '../components/Button';
+import CustomContainer from '../components/Container';
 
 const useStyles = makeStyles({
     tableTitle: {
@@ -49,12 +51,15 @@ export default function LaunchList(props) {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
       };
-
+      console.log(props.launchList);
     return(
-        <div className = {'customContainer'}>
-            <Typography classes = {{root: materialClasses.tableTitle}}>
-                Launch List
-            </Typography>
+        <CustomContainer
+            logo = {LauncIcon}
+            title = {`Launch List`}
+            secondaryTitle = {`Total Launches: ${props.launchList.length}`}
+            headerExist = {true}
+            >
+
             <TableContainer>
                 <Table  aria-label="simple table">
                     <TableHead>
@@ -84,12 +89,17 @@ export default function LaunchList(props) {
                         <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.date}</TableCell>
                         <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.customer}</TableCell>
                         <TableCell classes = {{root: materialClasses.tableContent}} align="right">
-                            <Button classes = {{root: materialClasses.customButton }} variant="contained" size="small" 
+                            {/* <Button classes = {{root: materialClasses.customButton }} variant="contained" size="small" 
                                     startIcon={< ArrowDownwardIcon style = {{fill: '#ffffff'}} />}>
                                 <NavLink to={`/launch/${row.flight_number}`} className = {materialClasses.missionLink}>
                                     VIEW
                                 </NavLink>
-                            </Button>
+                            </Button> */}
+                            <CustomButton>
+                                <NavLink to={`/launch/${row.flight_number}`} className = {materialClasses.missionLink}>
+                                    VIEW
+                                </NavLink>
+                            </CustomButton>
                         </TableCell> 
                         </TableRow>
                     ))}
@@ -114,7 +124,9 @@ export default function LaunchList(props) {
                         </TableRow>
                     </TableFooter>
                 </Table>
-            </TableContainer>
-        </div>
-    )
+            </TableContainer>        
+
+            
+        </CustomContainer>
+    );
 }

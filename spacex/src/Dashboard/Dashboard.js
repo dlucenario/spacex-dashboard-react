@@ -7,11 +7,15 @@ import MetricList from './Metrics/MetricList';
 import UpcomingLaunch from './UpcomingLaunch';
 import FeatureLaunch from './FeatureLaunch/FeatureLaunch';
 import RecentLaunches from './RecentLaunches';
+import LaunchPerYear from './LaunchPerYear';
+import PayloadPieChart from './PayloadPie';
 // import CustomerChart from './CustomerChart';
 import PayloadChart from './PayloadChart';
 
 import * as actions from '../store/actions/index';
 
+let customerPieChart;
+let organizationPieChart;
 
 class Dashboard extends React.Component {
 
@@ -30,43 +34,73 @@ class Dashboard extends React.Component {
     render() {
         return(
             <div>
-                <MetricList
-                    launchesLength = {this.props.launches.length}
-                    missionLength = {this.props.missions.length}
-                    coreLength = {this.props.cores.length}
-                    shipLength = {this.props.ships.length}
-                    refreshLaunch = {this.props.getLaunches}
-                    refreshMissions = {this.props.getMissions}
-                    refreshCores = {this.props.getCores}
-                    refreshShips = {this.props.getShips}
-                ></MetricList>
+                <Grid container spacing = {2} direction = 'column'>
+                    <Grid item >
                 <Grid container spacing = {2}>
                     <Grid item lg = {8}>
-                        <PayloadChart
-                            chartData = {this.props.topPayloadData}>
-                        </PayloadChart>
+
+                        <Grid container spacing = {2} justify="space-between" alignItems="stretch">
+                            <Grid item xl = {5} lg = {4}>
+                                <MetricList
+                                    launchesLength = {this.props.launches.length}
+                                    missionLength = {this.props.missions.length}
+                                    refreshLaunch = {this.props.getLaunches}
+                                    refreshMissions = {this.props.getMissions}
+                                ></MetricList>
+                            </Grid>
+
+                            <Grid item xl = {7} lg = {8}>
+                                <FeatureLaunch launchData = {this.props.featureLaunch}>
+                            </FeatureLaunch>
+                            </Grid>
+                            <Grid item lg = {12}>
+                                <LaunchPerYear
+                                    launchData = {this.props.launches}
+                                ></LaunchPerYear>
+                            </Grid>
+                        </Grid>
+
                     </Grid>
+
+
                     <Grid item lg = {4}>
-                        <FeatureLaunch
-                            launchData = {this.props.featureLaunch}
-                        >
-                        </FeatureLaunch>
-                    </Grid>
-                </Grid>
-                <Grid container spacing = {2}>
-                    <Grid item lg = {5}>
                         <UpcomingLaunch
                             launchData = {this.props.upcomingLaunches}>
                         </UpcomingLaunch>
                     </Grid>
-                    <Grid item lg = {7}>
+
+                </Grid>
+                </Grid>
+                {/* End of First Row */}
+
+                {/* Second Row */}
+                <Grid item>
+                <Grid container spacing = {2}>
+                    <Grid item lg = {6} xl = {8}>
+                        <Grid container spacing = {2}>
+                            <Grid item lg = {12} xl = {6}>
+                                <PayloadChart
+                                    chartData = {this.props.topPayloadData}>
+                                </PayloadChart>
+                            </Grid>
+                            <Grid item lg = {12} xl = {6}>
+                                <PayloadPieChart
+                                    title = {'Customers by Nationality'}
+                                    chartId = {'nationalityPieChart'}
+                                    launchData = {this.props.launches}
+                                    canvasReference = {organizationPieChart}>
+                                </PayloadPieChart>
+                            </Grid>
+                        </Grid>
+
+                    </Grid>
+                    <Grid item lg = {6} xl = {4}>
                         <RecentLaunches
                             launchData = {this.props.recentLaunches}>
                         </RecentLaunches>
                     </Grid>
-                    {/* <Grid item lg = {3}>
-                        <FeatureLaunch></FeatureLaunch>
-                    </Grid> */}
+                </Grid>
+                </Grid>
                 </Grid>
             </div>
         )

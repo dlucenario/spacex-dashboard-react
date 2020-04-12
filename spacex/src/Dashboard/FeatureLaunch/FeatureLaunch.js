@@ -1,32 +1,59 @@
 import React, { useEffect, useState } from 'react';
-import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-
-import dashboardClasses from '../Dashboard.module.css';
-import classes from './FeatureLaunch.module.css';
 import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableRow from '@material-ui/core/TableRow';
+import launchIcon from '../../images/icons/rocket.svg';
+import Container from '../../components/Container';
+import CustomButton from '../../components/Button';
 
 const useStyles = makeStyles({
-  tableTitle: {
-      color: '#9a9a9a'
+  numberContainer: {
+    width: '35px',
+    height: '50px',
+    backgroundImage: 'linear-gradient(152deg, #1B262C 0%, #0F4C75 100%)',
+    borderRadius: '3px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  tableHeader: {
-      color: '#ffffff',
-      textTransform: 'uppercase'
+  number: {
+    fontSize: '24px',
+    color: '#ffffff',
+    margin: 0
   },
-  tableContent: {
-      color: '#9a9a9a'
-  }
+   time: {
+     fontSize: '16px',
+     textAlign: 'center',
+     color: '#DEE5E5',
+     margin: '10px 0px',
+     textTransform: 'uppercase'
+   },
+   title: {
+    fontSize: '24px',
+    textAlign: 'center',
+    color: '#DEE5E5',
+    marginBottom: '20px',
+    marginTop: '0px',
+    textTransform: 'uppercase'
+   },
+   actionContainer: {
+    width: '100%',
+   },
+   featureLaunchContainer: {
+    marginTop: '30px',
+    height: '210px',
+    position: 'relative'
+   },
+   action : {
+     position: 'absolute',
+     left: '37%',
+     top: '73%'
+   }
 });
 
 export default function FeatureLaunch(props) {
-  const materialClasses = useStyles();
+  const classes = useStyles();
   const calculateTimeLeft = () => {
 
       const difference = props.launchData.launchDateUnix - Math.floor(Date.now() / 1000);
@@ -52,107 +79,143 @@ export default function FeatureLaunch(props) {
       
       return () => {clearTimeout(timeoutId)}
     });
+
+    let seconds = [];
+    if(timeLeft.seconds !== undefined && timeLeft.seconds >= 10) {
+      seconds = timeLeft.seconds.toString().split('');
+    } else {
+      seconds = [0,timeLeft.seconds];
+    }
+
+    let minutes = [];
+    if(timeLeft.minutes !== undefined && timeLeft.minutes >= 10) {
+      minutes = timeLeft.minutes.toString().split('');
+    } else {
+      minutes = [0,timeLeft.minutes];
+    }
+
+    let hours = [];
+    if(timeLeft.hours !== undefined && timeLeft.hours >= 10) {
+      hours = timeLeft.hours.toString().split('');
+    } else {
+      hours = [0,timeLeft.hours];
+    }
+
+    let days = [];
+    if(timeLeft.days !== undefined && timeLeft.days >= 10) {
+      days = timeLeft.days.toString().split('');
+    } else {
+      days = [0,timeLeft.days];
+    }
     
     return(
-      
-        <div className = {dashboardClasses.dashboardCardContainer}>
-            <div className = {classes.featureLaunch}>
-                {/* {timerComponents.length ? timerComponents : <span>Time's up!</span>}
-             */}
-            <Typography className = {classes.featureLaunchTitle}>
-                Next Launch - {props.launchData.missionName}
-            </Typography>
-            <Typography className = {classes.tminus}>
-                T-MINUS
-            </Typography>
-            <Grid container spacing = {2} direction ="row" justify = "center" alignItems ="center">
-                {/* Bug: when minutes turn to 0*/}
-                <Grid item xs = {3}>
-                    <div className = {classes.countdownContainer}>
-                      <span className = {classes.number}>
-                        {timeLeft.days}
-                      </span>
-                    </div>
-                    <Typography className = {classes.time}>
-                        Days
-                    </Typography>
-                </Grid>
-                <Grid item xs = {3}>
-                    <div className = {classes.countdownContainer}>
-                      <span className = {classes.number}>
-                        {timeLeft.hours}
-                      </span>
-                    </div>
-                    <Typography className = {classes.time}>
-                      Hours
-                    </Typography>
-                </Grid>
-                <Grid item xs = {3}>
-                    <div className = {classes.countdownContainer}>
-                      <span className = {classes.number}>
-                        {timeLeft.minutes}
-                      </span>
-                    </div>
-                    <Typography className = {classes.time}>
-                      Minutes
-                    </Typography>
-                </Grid>
+      <Container
+        logo = {launchIcon}
+        title = {`Next Launch - ${props.launchData.missionName}`}
+        secondaryTitle = {props.launchData.launchDate}
+        headerExist = {true}>
 
-                <Grid item xs = {3}>
-                    <div className = {classes.countdownContainer}>
-                      <span className = {classes.number}>
-                        {timeLeft.seconds}
-                      </span>
-                    </div>
-                    <Typography className = {classes.time}>
-                      Seconds
-                    </Typography>
-                </Grid>
+          <div className = {clsx(classes.featureLaunchContainer)}>
+          <p className = {clsx(classes.title)}> t-minus</p>
+          <Grid container direction="row" justify="center" alignItems="center" spacing = {1}>
 
+            {/* DAYS */}
+            <Grid item>
+              <Grid container direction="row" spacing = {1} justify="center" alignItems="center">
+                <Grid item >
+                  <div className = {clsx(classes.numberContainer)}>
+                    <p className = {clsx(classes.number)}>{days[0]}</p>
+                  </div>
+                </Grid>
+                <Grid item>
+                  <div className = {clsx(classes.numberContainer)}>
+                    <p className = {clsx(classes.number)}>{days[1]}</p>
+                  </div>
+                </Grid>
+                <Grid item>
+                    <p className = {clsx(classes.number)}>:</p>
+                </Grid>
+              </Grid>
+              <Grid item lg = {12}>
+                  <p className = {clsx(classes.time)}>Days</p>
+              </Grid>
             </Grid>
 
-            <TableContainer>
-              <Table className={classes.table} aria-label="simple table">
+            {/* HOURS */}
+            <Grid item>
+              <Grid container direction="row" spacing = {1} justify="center" alignItems="center">
+                <Grid item >
+                  <div className = {clsx(classes.numberContainer)}>
+                    <p className = {clsx(classes.number)}>{hours[0]}</p>
+                  </div>
+                </Grid>
+                <Grid item>
+                  <div className = {clsx(classes.numberContainer)}>
+                    <p className = {clsx(classes.number)}>{hours[1]}</p>
+                  </div>
+                </Grid>
+                <Grid item>
+                    <p className = {clsx(classes.number)}>:</p>
+                </Grid>
+              </Grid>
+              <Grid item lg = {12}>
+                  <p className = {clsx(classes.time)}>HOURS</p>
+              </Grid>
+            </Grid>
 
-                  <TableBody>
-                    <TableRow>
-                      <TableCell classes = {{root: materialClasses.tableHeader}}>
-                        Launch Date
-                      </TableCell>
-                      <TableCell classes = {{root: materialClasses.tableContent}}>
-                        {props.launchData.launchDate}
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell classes = {{root: materialClasses.tableHeader}}>
-                        Flight Number
-                      </TableCell>
-                      <TableCell classes = {{root: materialClasses.tableContent}}>
-                        {props.launchData.flightNumber}
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell classes = {{root: materialClasses.tableHeader}}>
-                        Rocket Name
-                      </TableCell>
-                      <TableCell classes = {{root: materialClasses.tableContent}}>
-                        {props.launchData.rocketName}
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell classes = {{root: materialClasses.tableHeader}}>
-                        Customer
-                      </TableCell>
-                      <TableCell classes = {{root: materialClasses.tableContent}}>
-                        {props.launchData.customerName}
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
+            {/* MINUTES */}
+            <Grid item>
+              <Grid container direction="row" spacing = {1} justify="center" alignItems="center">
+                <Grid item >
+                  <div className = {clsx(classes.numberContainer)}>
+                    <p className = {clsx(classes.number)}>{minutes[0]}</p>
+                  </div>
+                </Grid>
+                <Grid item>
+                  <div className = {clsx(classes.numberContainer)}>
+                    <p className = {clsx(classes.number)}>{minutes[1]}</p>
+                  </div>
+                </Grid>
+                <Grid item>
+                    <p className = {clsx(classes.number)}>:</p>
+                </Grid>
+              </Grid>
+              <Grid item lg = {12}>
+                  <p className = {clsx(classes.time)}>min</p>
+              </Grid>
+            </Grid>
 
-              </Table>
-            </TableContainer>
+            {/* SECONDS */}
+            <Grid item>
+              <Grid container direction="row" spacing = {1} justify="center" alignItems="center">
+                <Grid item >
+                  <div className = {clsx(classes.numberContainer)}>
+                    <p className = {clsx(classes.number)}>{seconds[0]}</p>
+                  </div>
+                </Grid>
+                <Grid item>
+                  <div className = {clsx(classes.numberContainer)}>
+                    <p className = {clsx(classes.number)}>{seconds[1]}</p>
+                  </div>
+                </Grid>
+              </Grid>
+              <Grid item lg = {12}>
+                  <p className = {clsx(classes.time)}>SEC</p>
+              </Grid>
+            </Grid>
 
+          </Grid>
+
+            {/* <Grid container justify = "flex-end">
+              <Grid item>
+                <CustomButton>View Action</CustomButton>
+              </Grid>
+            </Grid> */}
+
+            <div className = {classes.action}>
+              <CustomButton>View Launch</CustomButton>
             </div>
-        </div>
+          </div>
+      </Container>
     )
 }

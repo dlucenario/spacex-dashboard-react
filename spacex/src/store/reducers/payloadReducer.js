@@ -28,7 +28,7 @@ const setPayload = (state,action) => {
 
     return updateObject(state, {
         payloads: action.payloadList,
-        payloadTopFive: unique.slice(0,15)
+        payloadTopFive: unique.slice(0,10)
     });
 }
 

@@ -12,36 +12,53 @@ import NotFound from '../httpPages/NotFound';
 import Building from '../httpPages/Building';
 
 class Layout extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            drawer: true
+        }
+    }
+
+    toggleDrawer = () => {
+        this.setState({
+            drawer: !this.state.drawer
+        });
+    }
+
     render() {
         return(
-            <div style = {{paddingRight: '10px'}}>
-                <Grid container>
-                    <Grid item lg= {2}>
-                        <Sidebar/>
+            <div style = {{display: 'flex'}}>
+                
+                <Grid container direction='row'>
+                    <Grid item>
+                        <Sidebar drawer = {this.state.drawer}></Sidebar>
                     </Grid>
-                    <Grid item lg= {10}>
-                        <div style = {{paddingBottom: '150px'}}>
-                        <Appbar></Appbar>
-                            <Switch>
-                                <Route exact path="/" component = {DashboardModule}></Route>
-                                <Route exact path="/dashboard" component = {DashboardModule}></Route>
-                                <Route path="/launch" component = {LaunchModule}></Route>
-                                {/* <Route path="/launch/:id" render={(props) => (
-                                    <LaunchModule key={props.match.params.id} {...props} />)
-                                } /> */}
-                                <Route path="/mission" component = {Building}></Route>
-                                <Route path="/site" component = {Building}></Route>
-                                <Route path="/about" component = {Building}></Route>
-                                <Route path="/payload" component = {Building}></Route>
-                                <Route path="/rocket" component = {Building}></Route> 
-                                <Route path = '*' component = {NotFound}></Route>
-                            </Switch>
-                           
-                        </div>
-                        <Footer></Footer>
-                    </Grid>
+                        <Grid item>
+                            <Appbar
+                                toggleDrawer = {this.toggleDrawer}
+                            ></Appbar>
+                        </Grid>
+                        <Grid item>
+                                <Switch>
+                                    <Route exact path="/" component = {DashboardModule}></Route>
+                                    <Route exact path="/dashboard" component = {DashboardModule}></Route>
+                                    <Route path="/launch" component = {LaunchModule}></Route>
+                                    {/* <Route path="/launch/:id" render={(props) => (
+                                        <LaunchModule key={props.match.params.id} {...props} />)
+                                    } /> */}
+                                    <Route path="/mission" component = {Building}></Route>
+                                    <Route path="/site" component = {Building}></Route>
+                                    <Route path="/about" component = {Building}></Route>
+                                    <Route path="/payload" component = {Building}></Route>
+                                    <Route path="/rocket" component = {Building}></Route> 
+                                    <Route path = '*' component = {NotFound}></Route>
+                                </Switch>
+                        </Grid>
+                        <Grid item>
+                            <Footer></Footer>
+                        </Grid>
                 </Grid>
-
             </div>
         );
     }
