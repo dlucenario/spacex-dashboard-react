@@ -51,7 +51,7 @@ export default function LaunchList(props) {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
       };
-      console.log(props.launchList);
+
     return(
         <CustomContainer
             logo = {LauncIcon}
@@ -79,10 +79,12 @@ export default function LaunchList(props) {
                         ).map((row) => (
                         <TableRow key={row.flight_number+'-'+row.mission_name}>
                         <TableCell component="th" scope="row">
-
-                                <NavLink to={`/launch/${row.flight_number}`} className = {materialClasses.missionLink}>
+                            <div className = {materialClasses.missionLink}>
+                                {row.mission_name}
+                            </div>
+                                {/* <NavLink to={`/launch/${row.flight_number}`} className = {materialClasses.missionLink}>
                                     {row.mission_name}
-                                </NavLink>
+                                </NavLink> */}
 
                         </TableCell>
                         <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.flight_number}</TableCell>

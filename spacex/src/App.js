@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
-import Layout from './Layout/Layout2';
+import Layout from './Layout/Layout';
 
 const theme = createMuiTheme({
   typography : {

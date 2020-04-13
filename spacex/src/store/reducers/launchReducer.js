@@ -33,7 +33,6 @@ const setLaunches = (state,action) => {
 }
 
 const setUpcomingLaunches = (state,action) => {
-
     const upcomingLaunches = action.upcomingLaunches.map( (element) => {
         const newDate = new Date(element.launch_date_unix * 1000);
         
@@ -41,7 +40,8 @@ const setUpcomingLaunches = (state,action) => {
         return {
             mission_name: element.mission_name,
             date: tempDate,
-            rocket: element.rocket.rocket_name
+            rocket: element.rocket.rocket_name,
+            flightNumber: element.flight_number
         }
     });
 
@@ -61,7 +61,8 @@ const setRecentLaunches = (state,action) => {
             date: tempDate,
             launch_success: element.launch_success,
             land_success: element.rocket.first_stage.cores[0].land_success,
-            missionPatch: element.links['mission_patch_small']
+            missionPatch: element.links['mission_patch_small'],
+            flightNumber: element.flight_number
         }
     });
 

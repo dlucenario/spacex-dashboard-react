@@ -1,10 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Metric from '../Dashboard/Metrics/Metric';
 
 import CustomMetric from '../components/Metric';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import classes from '../Dashboard/Metrics/MetricList.module.css';
 
 export default function LaunchMetric(props) {
     const launchIcon = require('../images/icons/rocket.svg');
@@ -12,7 +10,6 @@ export default function LaunchMetric(props) {
     return(
         <Grid container direction = "column" spacing = {2}>
             <Grid item lg = {12}>
-                <div className = {classes.metricList}>
                     <CustomMetric 
                         icon = {launchIcon}
                         altLogo = {'launch-logo'}
@@ -22,10 +19,8 @@ export default function LaunchMetric(props) {
                         actionIcon = {<RefreshIcon></RefreshIcon>}
                         actionTitle = {'Update Now'}
                     ></CustomMetric>
-                </div>
             </Grid>
             <Grid item lg = {12}>
-                <div className = {classes.metricList}>
                     <CustomMetric 
                         icon = {planIcon}
                         altLogo = {'pending-launches'}
@@ -35,7 +30,6 @@ export default function LaunchMetric(props) {
                         actionIcon = {<RefreshIcon></RefreshIcon>}
                         actionTitle = {'Update Now'}
                     ></CustomMetric>
-                </div>
             </Grid>
 
         </Grid>

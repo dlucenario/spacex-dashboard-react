@@ -1,9 +1,7 @@
 import React from 'react';
 import Chart from "chart.js";
-import classes from './Dashboard.module.css';
 
 import Container from '../components/Container';
-import { Typography } from '@material-ui/core';
 import payloadIcon from '../images/icons/product.svg';
 
 // Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif"

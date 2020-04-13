@@ -5,12 +5,7 @@ import Container from '../components/Container';
 import CustomButton from '../components/Button';
 import planIcon from '../images/icons/plan.svg';
 import Grid from '@material-ui/core/Grid';
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TableContainer from '@material-ui/core/TableContainer';
-// import TableHead from '@material-ui/core/TableHead';
-// import TableRow from '@material-ui/core/TableRow';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles({
     eventTimeline: {
@@ -52,11 +47,16 @@ const useStyles = makeStyles({
         color: '#DEE5E5',
         fontSize: '14px',
         marginBottom: '5px'
+    },
+    link: {
+        textDecoration: 'none',
+        color: '#ffffff'
     }
 });
 
 export default function UpcomingLaunch(props) {
     const classes = useStyles();
+    console.log(props);
     return(
         <Container
         logo = {planIcon}
@@ -76,7 +76,11 @@ export default function UpcomingLaunch(props) {
                                 </Grid>
                                 <Grid item lg = {4}>
                                     <div style = {{float:'right'}}>
-                                        <CustomButton>VIEW</CustomButton>
+                                        <CustomButton>
+                                            <NavLink to={`/launch/${element.flightNumber}`} className = {classes.link}>
+                                                VIEW
+                                            </NavLink>
+                                        </CustomButton>
                                     </div>
                                 </Grid>
                             </Grid>
@@ -85,30 +89,5 @@ export default function UpcomingLaunch(props) {
                 }
             </div>
         </Container>
-        // <div className = {classes.dashboardCardContainer}>
-
-        //     <Typography classes = {{root: materialClasses.tableTitle}}>
-        //         Upcoming Launches
-        //     </Typography>
-        //         <TableContainer>
-        //             <Table  className={classes.table} aria-label="simple table">
-        //                 <TableHead>
-        //                     <TableRow>
-        //                         <TableCell classes = {{root: materialClasses.tableHeader}}>mission</TableCell>
-        //                         <TableCell classes = {{root: materialClasses.tableHeader}} align="right"> launch date</TableCell>
-        //                     </TableRow>
-        //                 </TableHead>
-        //                 <TableBody>
-        //                     {props.launchData.map(row => (
-        //                         <TableRow key={row.mission_name}>
-        //                             <TableCell classes = {{root: materialClasses.tableContent}} width="60%" component="th" scope="row">{row.mission_name}</TableCell>
-        //                             <TableCell classes = {{root: materialClasses.tableContent}} width="40%" align="right">{row.date}</TableCell>
-        //                         </TableRow>
-        //                     ))}
-        //                 </TableBody>
-        //             </Table>
-        //         </TableContainer>
-
-        // </div>
     )
 }

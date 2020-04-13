@@ -6,7 +6,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import { makeStyles } from '@material-ui/core/styles';
-// import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles({
     tableTitle: {
@@ -19,7 +18,7 @@ const useStyles = makeStyles({
     tableContent: {
         color: '#9a9a9a'
     }
-  });
+});
 
 export default function DataTable(props) {
     const materialClasses = useStyles();
@@ -53,11 +52,8 @@ export default function DataTable(props) {
     return(
         
     <div>
-        {/* <Typography classes = {{root: materialClasses.tableTitle}}>
-            {props.title}
-        </Typography> */}
         <TableContainer>
-            <Table aria-label="simple table">
+            <Table>
             <TableBody>
                 {tableData}
             </TableBody>

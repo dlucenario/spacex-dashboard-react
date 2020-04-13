@@ -3,18 +3,17 @@ import  { connect } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
 
-import MetricList from './Metrics/MetricList';
+import MetricList from './MetricList';
 import UpcomingLaunch from './UpcomingLaunch';
-import FeatureLaunch from './FeatureLaunch/FeatureLaunch';
+import FeatureLaunch from './FeatureLaunch';
 import RecentLaunches from './RecentLaunches';
 import LaunchPerYear from './LaunchPerYear';
 import PayloadPieChart from './PayloadPie';
-// import CustomerChart from './CustomerChart';
 import PayloadChart from './PayloadChart';
+import Fade from '@material-ui/core/Fade';
 
 import * as actions from '../store/actions/index';
 
-let customerPieChart;
 let organizationPieChart;
 
 class Dashboard extends React.Component {
@@ -28,12 +27,11 @@ class Dashboard extends React.Component {
         this.props.getUpcomingLaunches();
         this.props.getRecentLaunches();
         this.props.getFeatureLaunch();
-        
     }
     
     render() {
         return(
-            <div>
+            <Fade in = {true} timeout = {500}>
                 <Grid container spacing = {2} direction = 'column'>
                     <Grid item >
                 <Grid container spacing = {2}>
@@ -102,7 +100,7 @@ class Dashboard extends React.Component {
                 </Grid>
                 </Grid>
                 </Grid>
-            </div>
+            </Fade>
         )
     }
 }

@@ -1,14 +1,28 @@
 import React from 'react';
-import classes from './LaunchItem.module.css';
 import Button from '@material-ui/core/Button';
 import RedditIcon from '@material-ui/icons/Reddit';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import CreateIcon from '@material-ui/icons/Create';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 
+
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+    launchItemLinks: {
+        marginTop: '15px'
+    },
+    linkButton: {
+        marginRight: '10px',
+        width: '100px'
+    }
+});
+
 export default function LaunchLinks(props) {
+    const classes = useStyles();
     return(
         
+
         <div className = {classes.launchItemLinks}>
             <Button variant="contained"
             color="default" className={classes.linkButton} 

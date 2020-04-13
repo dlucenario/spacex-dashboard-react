@@ -6,8 +6,6 @@ import Divider from '@material-ui/core/Divider';
 import { withStyles } from '@material-ui/styles';
 
 import * as actions from '../store/actions/index';
-// import classes from './LaunchItem.module.css';
-import { Typography } from '@material-ui/core';
 
 import LaunchLinks from './LaunchLinks';
 import DataTable from '../components/DataTable';
@@ -16,13 +14,13 @@ import clsx from 'clsx';
 import { convertStatus } from '../shared/utility';
 
 import CustomContainer from '../components/Container';
-import CustomButton from '../components/Button';
 import DetailsIcon from '../images/icons/info.svg';
 import VideoIcon from '../images/icons/video.svg';
 import LaunchIcon from '../images/icons/rocket.svg';
 import PayloadIcon from '../images/icons/product.svg';
 import GalleryIcon from '../images/icons/photo.svg';
 
+import Fade from '@material-ui/core/Fade';
 function formatLandStatus(status) {
     
     let statusElement = <span>NA</span>;
@@ -104,7 +102,7 @@ class LaunchItem extends React.Component {
         }
 
         return(
-
+            <Fade in = {true} timeout = {500}>
             <Grid container spacing = {2}>
                 
                 <Grid item lg = {12}>
@@ -128,7 +126,7 @@ class LaunchItem extends React.Component {
                                 <Divider className = {classes.divider} />
                                 
                                 <div className = {classes.launchItemStatusContainer}>
-                                    <p className = {classes.launchItemStatus}>Launch:
+                                    <p className = {classes.launchItemStatus}>{`Launch: `}
                                         <span className = {clsx({
                                             [classes.success]: this.props.oneLaunch.launchSuccess,
                                             [classes.fail]: !this.props.oneLaunch.launchSuccess
@@ -137,7 +135,7 @@ class LaunchItem extends React.Component {
                                 </div>
 
                                 <div className = {classes.launchItemStatusContainer}>
-                                    <p className = {classes.launchItemStatus}>Land:
+                                    <p className = {classes.launchItemStatus}>{`Land: `}
                                         <span className = {clsx({
                                             [classes.success]: this.props.oneLaunch.landSuccess,
                                             [classes.fail]: !this.props.oneLaunch.landSuccess
@@ -148,7 +146,7 @@ class LaunchItem extends React.Component {
                                 <br/>
 
                                 <div className = {classes.launchItemStatusContainer}>
-                                    <p className = {classes.launchItemStatus}>Status:
+                                    <p className = {classes.launchItemStatus}>{`Status: `}
                                         <span className = {clsx({
                                             [classes.success]: !this.props.oneLaunch.upcoming,
                                             [classes.fail]: this.props.oneLaunch.upcoming
@@ -157,7 +155,7 @@ class LaunchItem extends React.Component {
                                 </div>
 
                                 <div className = {classes.launchItemStatusContainer}>
-                                    <p className = {classes.launchItemStatus}>ID:
+                                    <p className = {classes.launchItemStatus}>{`ID: `}
                                         {missionId}
                                     </p>
                                 </div>
@@ -214,104 +212,22 @@ class LaunchItem extends React.Component {
                         </Grid>
                     </Grid>
                 </Grid>
-
+                
+                {/* Third Row */}
                 <Grid item lg = {12}>
                     <CustomContainer
                         logo = {GalleryIcon}
                         title = {`Launch Gallery`}
+                        secondaryTitle = {this.props.oneLaunch.missionName}
                         headerExist = {true}>
                             <LaunchGallery
+                                missionName = {this.props.oneLaunch.missionName}
                                 gallery = {this.props.oneLaunch.galleryLinks}
                             ></LaunchGallery>
                     </CustomContainer>
                 </Grid>
             </Grid>
-
-            // <CustomContainer
-            //     logo = {DetailsIcon}
-            //     title = {`Flight Number: `}
-            //     headerExist = {true}>
-
-            //     <Grid container direction='column'>
-            //         <Grid item lg = {12}>
-
-            //         </Grid>
-
-            //     </Grid>
-            // </CustomContainer>
-        //     <div className= {classes.launchItem}>
-
-        //     <Grid container spacing = {2}>
-        //         <Grid item lg = {6}>
-        //             <div className = {'customContainer'}>
-        //                 <div className = {classes.launchItemHeaderContainer}>
-        //                     <div className = {classes.launchPatchContainer}>
-        //                         <img src = {this.props.oneLaunch.missionPatchLink}  
-        //                         alt = 'patch_icon'
-        //                         className = {classes.launchPatchImage} />
-        //                     </div>
-        //                     <Typography className = {classes.launchItemTitle}>
-        //                         Flight Number: {this.props.oneLaunch.flightNumber}
-        //                     </Typography>
-        //                 </div>
-        //                 <Divider style = {{backgroundColor: '#ffffff', height: '2px'}} />
-        //                 <div className = {classes.launchItemStatusContainer}>
-        //                     <Typography>
-        //                         Launch: {formatLandStatus(this.props.oneLaunch.launchSuccess)}
-        //                     </Typography>
-        //                     <Typography>
-        //                         Land: { formatLandStatus(this.props.oneLaunch.landSuccess) }
-        //                     </Typography>
-        //                     <Typography>
-        //                         Mission ID: {missionId}
-        //                     </Typography>
-        //                 </div>
-        //                 <div className = {classes.launchItemDescriptionContainer}>
-        //                     <Typography className = {classes.missionName}>
-        //                         Mission Name: {this.props.oneLaunch.missionName}
-        //                     </Typography>
-        //                     <Typography style={{textAlign:'justify',color: '#9a9a9a'}}>
-        //                         {this.props.oneLaunch.details}
-        //                     </Typography>
-        //                 </div>
-        //                 <LaunchLinks
-        //                     links = {this.props.oneLaunch.links}
-        //                 ></LaunchLinks>
-        //             </div>
-        //         </Grid>
-        //         <Grid item lg = {6}>
-        //             <div>
-        //                 <iframe width="100%" height="400"
-        //                     title = 'space-x-video'
-        //                     src={`https://www.youtube.com/embed/${this.props.oneLaunch.videoId}?origin=https://spacex.koalafiedcoder.com`}>
-        //                 </iframe>
-        //             </div>
-        //         </Grid>
-        //     </Grid>
-
-        //     <Grid container spacing = {2}>
-        //         <Grid item lg = {6}>
-        //             <div className = {'customContainer'}>
-        //                 <DataTable
-        //                     title = 'Launch Details'
-        //                     dataTable = {this.props.oneLaunch.launchTable}>
-        //                 </DataTable>
-        //             </div>
-        //         </Grid>
-        //         <Grid item lg = {6}>
-        //         <div className = {'customContainer'}>
-        //             <DataTable
-        //                 title = 'Payload Details'
-        //                 dataTable = {this.props.oneLaunch.payloadTable}>
-        //             </DataTable>
-        //         </div>
-        //         </Grid>
-        //     </Grid>
-
-        //     <LaunchGallery
-        //         gallery = {this.props.oneLaunch.galleryLinks}
-        //     ></LaunchGallery>
-        // </div>
+            </Fade>
         )
     }
 }

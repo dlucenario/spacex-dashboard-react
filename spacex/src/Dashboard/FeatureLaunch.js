@@ -3,9 +3,10 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 
-import launchIcon from '../../images/icons/rocket.svg';
-import Container from '../../components/Container';
-import CustomButton from '../../components/Button';
+import launchIcon from '../images/icons/rocket.svg';
+import Container from '../components/Container';
+import CustomButton from '../components/Button';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles({
   numberContainer: {
@@ -49,6 +50,10 @@ const useStyles = makeStyles({
      position: 'absolute',
      left: '37%',
      top: '73%'
+   },
+   link : {
+     textDecoration: 'none',
+     color: '#ffffff'
    }
 });
 
@@ -107,7 +112,7 @@ export default function FeatureLaunch(props) {
     } else {
       days = [0,timeLeft.days];
     }
-    
+        
     return(
       <Container
         logo = {launchIcon}
@@ -206,14 +211,12 @@ export default function FeatureLaunch(props) {
 
           </Grid>
 
-            {/* <Grid container justify = "flex-end">
-              <Grid item>
-                <CustomButton>View Action</CustomButton>
-              </Grid>
-            </Grid> */}
-
             <div className = {classes.action}>
-              <CustomButton>View Launch</CustomButton>
+              <CustomButton>
+                <NavLink to={`/launch/${props.launchData.flightNumber}`} className = {clsx(classes.link)}>
+                  VIEW LAUNCH
+                </NavLink>
+              </CustomButton>
             </div>
           </div>
       </Container>
