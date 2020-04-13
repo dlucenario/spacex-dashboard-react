@@ -26,7 +26,7 @@ export const setLaunches = (launchList) => {
 export const getUpcomingLaunches = () => {
     
     return dispatch => {
-        axios.get('/launches/upcoming?limit=5&filter=mission_name,launch_date_unix,rocket')
+        axios.get('/launches/upcoming?limit=5&filter=mission_name,launch_date_unix,rocket,flight_number')
         .then(response => {
             if(response.status === 200) {
                 dispatch(setUpcomingLaunches(response.data));
@@ -48,7 +48,7 @@ export const setUpcomingLaunches = (upcomingLaunches) => {
 export const getRecentLaunches = () => {
     //get the flight number only
     return dispatch => {
-        axios.get('/launches/past?limit=5&order=desc&filter=mission_name,launch_date_unix,launch_date_utc,launch_success,rocket,links')
+        axios.get('/launches/past?limit=5&order=desc&filter=mission_name,launch_date_unix,launch_date_utc,launch_success,rocket,links,flight_number')
         .then(response => {
             if(response.status === 200) {
                 dispatch(setRecentLaunches(response.data));

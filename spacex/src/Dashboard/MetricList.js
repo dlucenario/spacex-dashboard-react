@@ -1,23 +1,21 @@
 import React from 'react';
-import Metric from './Metric';
-import Metric2 from '../../components/Metric';
+import Metric2 from '../components/Metric';
 import Grid from '@material-ui/core/Grid';
 
 import RefreshIcon from '@material-ui/icons/Refresh';
-import classes from './MetricList.module.css';
 
 export default function MetricList(props) {
 
-    const launchIcon = require('../../images/icons/rocket.svg');
-    const missionIcon = require('../../images/icons/target.svg');
+    const launchIcon = require('../images/icons/rocket.svg');
+    const missionIcon = require('../images/icons/target.svg');
     // const rocketIcon = require('../../images/icons/project.svg');
     // const dragonIcon = require('../../images/icons/dragon.svg');
-    const cpuIcon = require('../../images/icons/cpu.svg');
-    const shipIcon = require('../../images/icons/boat.svg');
+    // const cpuIcon = require('../../images/icons/cpu.svg');
+    // const shipIcon = require('../../images/icons/boat.svg');
 
     return(
         
-        <div className = {classes.metricList}>
+        <div>
             <Grid container spacing = {2}  justify="space-between" alignItems="stretch">
                 <Grid item lg = {12}>
                     <Metric2 

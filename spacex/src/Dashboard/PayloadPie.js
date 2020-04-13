@@ -10,7 +10,6 @@ class PayloadPie extends React.Component {
     chartRef = React.createRef();
 
     componentDidUpdate() {
-        console.log(this.props);
         if(this.props.launchData !== undefined) {
             this.buildChart();
         }

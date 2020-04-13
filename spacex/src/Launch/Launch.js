@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import LaunchList from './LaunchList';
 import LaunchMetric from './LaunchMetric';
 import LaunchItem from './LaunchItem';
-
+import Fade from '@material-ui/core/Fade';
 import { Route } from 'react-router-dom';
 
 class Launch extends React.Component{
@@ -17,7 +17,7 @@ class Launch extends React.Component{
 
     render() {
         return(
-            <div>
+            <Fade in = {true} timeout = {500}>
                 <Grid container direction = 'row' spacing = {2}>
                     <Grid item lg = {12}>
                         <Grid container spacing = {2}>
@@ -45,7 +45,7 @@ class Launch extends React.Component{
 
 
 
-            </div>
+            </Fade>
         )
     }
 }
