@@ -62,6 +62,9 @@ const useStyles = makeStyles({
     link: {
         color: '#ffffff',
         textDecoration: 'none'
+    },
+    parent: {
+        height: '100%'
     }
 
 });
@@ -70,6 +73,8 @@ export default function RecentLaunches(props) {
     const  classes = useStyles();
     console.log(props);
     return(
+        <div className = {classes.parent}>
+
         <Container
         logo = {clockIcon}
         title = {`Recent Launches`}
@@ -114,5 +119,6 @@ export default function RecentLaunches(props) {
             })}
 
         </Container>
+        </div>
     )
 }

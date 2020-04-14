@@ -42,9 +42,6 @@ class Launch extends React.Component{
                         </Route>
                     </Grid>
                 </Grid>
-
-
-
             </Fade>
         )
     }

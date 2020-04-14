@@ -5,10 +5,14 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     container: {
-        padding: '15px',
+        height: '100%',
         background: 'rgba(255,255,255,0.16)',
         boxShadow: '0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.20)',
         borderRadius: '5px',
+    },
+    content: {
+        padding: '15px',
+        height: '100%',
     },
     headerContainer: {
         marginBottom: '10px',
@@ -53,8 +57,10 @@ export default function Container(props) {
 
     return(
         <div className = {clsx(classes.container)}>
-            {header}            
-            {props.children}
+            <div className = {classes.content}>
+                {header}            
+                {props.children}
+            </div>
         </div>
     )
 }
