@@ -176,7 +176,7 @@ class LaunchItem extends React.Component {
                                 title = {'Video Link'}
                                 headerExist = {true}>
                                 
-                                <iframe width="100%" height="350"
+                                <iframe width="100%" height="400px"
                                     title = 'space-x-video'
                                     frameBorder="0"
                                     src={`https://www.youtube.com/embed/${this.props.oneLaunch.videoId}?origin=https://spacex.koalafiedcoder.com`}>
