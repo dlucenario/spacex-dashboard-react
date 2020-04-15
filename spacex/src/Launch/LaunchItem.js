@@ -21,23 +21,6 @@ import PayloadIcon from '../images/icons/product.svg';
 import GalleryIcon from '../images/icons/photo.svg';
 
 import Fade from '@material-ui/core/Fade';
-function formatLandStatus(status) {
-    
-    let statusElement = <span>NA</span>;
-    switch(status) {
-        case true:
-            statusElement = <span style={{color: '#6DD400'}}>Success</span>;
-            break;
-        case false:
-            statusElement =  <span style={{color: '#E02020'}}>Fail</span>;
-            break;
-        case null:
-            break;
-        default:
-            break;
-    }
-    return statusElement;
-}
 
 const styles = {
     launchItemHeaderContainer: {
@@ -93,7 +76,7 @@ class LaunchItem extends React.Component {
     render() {
 
         const { classes } = this.props;
-        console.log(this.props.oneLaunch);
+
         let missionId = 'No Mission ID';
         if(this.props.oneLaunch.missionId !== undefined) {
             if(this.props.oneLaunch.missionId.length !== 0) {
@@ -107,7 +90,7 @@ class LaunchItem extends React.Component {
                 
                 <Grid item lg = {12}>
                     <Grid container spacing = {2}>
-                        <Grid item lg = {6}>
+                        <Grid item xs = {12} lg = {6}>
                             <CustomContainer
                                 logo = {DetailsIcon}
                                 title = {`Flight Number: ${this.props.oneLaunch.flightNumber}`}
@@ -170,7 +153,7 @@ class LaunchItem extends React.Component {
                                 </div>
                             </CustomContainer>
                         </Grid>
-                        <Grid item lg = {6}>
+                        <Grid item xs = {12} lg = {6}>
                             <CustomContainer
                                 logo = {VideoIcon}
                                 title = {'Video Link'}
@@ -190,7 +173,7 @@ class LaunchItem extends React.Component {
                 {/* Second Row */}
                 <Grid item lg = {12}>
                     <Grid container spacing = {2} alignItems="stretch">
-                        <Grid item lg ={6}>
+                        <Grid item xs = {12} lg ={6}>
                             <CustomContainer
                                 logo = {LaunchIcon}
                                 title = {'Launch Details'}
@@ -200,7 +183,7 @@ class LaunchItem extends React.Component {
                                 </DataTable>
                             </CustomContainer>
                         </Grid>
-                        <Grid item lg = {6}>
+                        <Grid item xs = {12} lg = {6}>
                             <CustomContainer
                                 logo = {PayloadIcon}
                                 title = {`Payload Details`}
@@ -214,7 +197,7 @@ class LaunchItem extends React.Component {
                 </Grid>
                 
                 {/* Third Row */}
-                <Grid item lg = {12}>
+                <Grid item xs = {12} lg = {12}>
                     <CustomContainer
                         logo = {GalleryIcon}
                         title = {`Launch Gallery`}

@@ -7,7 +7,7 @@ import planIcon from '../images/icons/plan.svg';
 import Grid from '@material-ui/core/Grid';
 import { NavLink } from 'react-router-dom';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles( theme => ({
     eventTimeline: {
         position: 'relative',
         "&::before": {
@@ -24,6 +24,9 @@ const useStyles = makeStyles({
         paddingLeft: '40px',
         marginBottom: '38px',
         position: 'relative',
+        [theme.breakpoints.down('xs')]: {
+            marginBottom: '10px'
+        },
         "&::before": {
         content: `''`,
         position: 'absolute',
@@ -51,12 +54,17 @@ const useStyles = makeStyles({
     link: {
         textDecoration: 'none',
         color: '#ffffff'
+    },
+    buttonContainer: {
+        float: 'right',
+        [theme.breakpoints.down('xs')]: {
+            float: 'left'
+        }
     }
-});
+}));
 
 export default function UpcomingLaunch(props) {
     const classes = useStyles();
-    console.log(props);
     return(
         <Container
         logo = {planIcon}
@@ -69,13 +77,13 @@ export default function UpcomingLaunch(props) {
                        
                         <div className = {clsx(classes.eventContent)}>
                             <Grid container spacing = {2}>
-                                <Grid item lg = {8}>
+                                <Grid item xs = {12} lg = {8}>
                                     <p className = {clsx(classes.missionName)}>{element.mission_name}</p>
                                     <p className = {clsx(classes.missionSub)}>{element.date}</p>
                                     <p className = {clsx(classes.missionSub)}>{element.rocket}</p>
                                 </Grid>
-                                <Grid item lg = {4}>
-                                    <div style = {{float:'right'}}>
+                                <Grid item xs = {12} lg = {4}>
+                                    <div className = {classes.buttonContainer}>
                                         <CustomButton>
                                             <NavLink to={`/launch/${element.flightNumber}`} className = {classes.link}>
                                                 VIEW

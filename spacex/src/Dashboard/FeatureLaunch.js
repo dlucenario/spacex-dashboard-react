@@ -8,7 +8,7 @@ import Container from '../components/Container';
 import CustomButton from '../components/Button';
 import { NavLink } from 'react-router-dom';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles( theme => ({
   numberContainer: {
     width: '35px',
     height: '50px',
@@ -36,26 +36,34 @@ const useStyles = makeStyles({
     color: '#DEE5E5',
     marginBottom: '20px',
     marginTop: '0px',
-    textTransform: 'uppercase'
-   },
-   actionContainer: {
-    width: '100%',
+    textTransform: 'uppercase', 
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: '10px'
+    }
    },
    featureLaunchContainer: {
     marginTop: '30px',
     height: '210px',
-    position: 'relative'
+    position: 'relative',
+    [theme.breakpoints.down('xs')]: {
+      marginTop: '5px'
+    }
    },
    action : {
      position: 'absolute',
-     left: '37%',
-     top: '73%'
+     left: '45%',
+     top: '73%',
+     [theme.breakpoints.down('xs')]: {
+      left: '80%',
+      top: '-23%'
+    }
+
    },
    link : {
      textDecoration: 'none',
      color: '#ffffff'
    }
-});
+}));
 
 export default function FeatureLaunch(props) {
   const classes = useStyles();
@@ -214,7 +222,7 @@ export default function FeatureLaunch(props) {
             <div className = {classes.action}>
               <CustomButton>
                 <NavLink to={`/launch/${props.launchData.flightNumber}`} className = {clsx(classes.link)}>
-                  VIEW LAUNCH
+                  VIEW
                 </NavLink>
               </CustomButton>
             </div>

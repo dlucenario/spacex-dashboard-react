@@ -19,14 +19,14 @@ class Launch extends React.Component{
         return(
             <Fade in = {true} timeout = {500}>
                 <Grid container direction = 'row' spacing = {2}>
-                    <Grid item lg = {12}>
+                    <Grid item xs = {12} lg = {12}>
                         <Grid container spacing = {2}>
-                            <Grid item lg = {8}>
+                            <Grid item xs = {12} lg = {8}>
                                 <LaunchList
                                     launchList = {this.props.launches}
                                 ></LaunchList>
                             </Grid>
-                            <Grid item lg = {4}>
+                            <Grid item xs = {12} lg = {4}>
                                 <LaunchMetric
                                     upcomingLaunchLength = {this.props.upcomingLaunchLength}
                                     finishedLaunchLength = {this.props.finishedLaunchLength}
@@ -35,7 +35,7 @@ class Launch extends React.Component{
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item lg = {12}>
+                    <Grid item xs = {12} lg = {12}>
                         <Route path="/launch/:id" render = {(props)=> (
                             <LaunchItem  key={props.match.params.id} id = {props.match.params.id}></LaunchItem>
                             )}>

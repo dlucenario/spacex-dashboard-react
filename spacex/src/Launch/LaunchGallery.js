@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import CustomIconButton from '../components/IconButton';
 import PageviewIcon from '@material-ui/icons/Pageview';
-const useStyles = makeStyles({
+const useStyles = makeStyles( theme => ({
     galleryTitle: {
         color: '#ffffff',
         textAlign: 'center',
@@ -43,9 +43,13 @@ const useStyles = makeStyles({
     image: {
         width: '20vw',
         height: '20vw',
-        transition: '1s ease'
+        transition: '1s ease',
+        [theme.breakpoints.down('xs')]: {
+            width: '90vw',
+            height: '90vw'
+        }
     }
-  });
+}));
 
 export default function LaunchGallery(props) {
     const classes = useStyles();

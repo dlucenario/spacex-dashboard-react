@@ -11,8 +11,6 @@ import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 
 import { NavLink } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import LauncIcon from '../images/icons/rocket.svg';
 
 import CustomButton from '../components/Button';
@@ -64,11 +62,11 @@ export default function LaunchList(props) {
                 <Table  aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell classes = {{root: materialClasses.tableHeader}} >mission name</TableCell>
-                        <TableCell classes = {{root: materialClasses.tableHeader}} align="right">flight #</TableCell>
-                        <TableCell classes = {{root: materialClasses.tableHeader}} align="right">launch date</TableCell>
-                        <TableCell classes = {{root: materialClasses.tableHeader}} align="right">customer</TableCell>
-                        <TableCell classes = {{root: materialClasses.tableHeader}} align="right">view</TableCell>
+                        <TableCell width = "40%" classes = {{root: materialClasses.tableHeader}} >mission name</TableCell>
+                        <TableCell width = "10%" classes = {{root: materialClasses.tableHeader}} align="right">#</TableCell>
+                        <TableCell width = "20%" classes = {{root: materialClasses.tableHeader}} align="right">date</TableCell>
+                        <TableCell width = "20%" classes = {{root: materialClasses.tableHeader}} align="right">customer</TableCell>
+                        <TableCell width = "10%" classes = {{root: materialClasses.tableHeader}} align="right">view</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -78,25 +76,17 @@ export default function LaunchList(props) {
                             : props.launchList
                         ).map((row) => (
                         <TableRow key={row.flight_number+'-'+row.mission_name}>
-                        <TableCell component="th" scope="row">
+                        <TableCell  width = "40%" component="th" scope="row">
+
                             <div className = {materialClasses.missionLink}>
                                 {row.mission_name}
                             </div>
-                                {/* <NavLink to={`/launch/${row.flight_number}`} className = {materialClasses.missionLink}>
-                                    {row.mission_name}
-                                </NavLink> */}
 
                         </TableCell>
-                        <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.flight_number}</TableCell>
-                        <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.date}</TableCell>
-                        <TableCell classes = {{root: materialClasses.tableContent}} align="right">{row.customer}</TableCell>
-                        <TableCell classes = {{root: materialClasses.tableContent}} align="right">
-                            {/* <Button classes = {{root: materialClasses.customButton }} variant="contained" size="small" 
-                                    startIcon={< ArrowDownwardIcon style = {{fill: '#ffffff'}} />}>
-                                <NavLink to={`/launch/${row.flight_number}`} className = {materialClasses.missionLink}>
-                                    VIEW
-                                </NavLink>
-                            </Button> */}
+                        <TableCell width = "10%" classes = {{root: materialClasses.tableContent}} align="right">{row.flight_number}</TableCell>
+                        <TableCell width = "20%" classes = {{root: materialClasses.tableContent}} align="right">{row.date}</TableCell>
+                        <TableCell width = "20%" classes = {{root: materialClasses.tableContent}} align="right">{row.customer}</TableCell>
+                        <TableCell width = "10%" classes = {{root: materialClasses.tableContent}} align="right">
                             <CustomButton>
                                 <NavLink to={`/launch/${row.flight_number}`} className = {materialClasses.missionLink}>
                                     VIEW

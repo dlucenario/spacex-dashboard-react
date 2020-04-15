@@ -17,7 +17,7 @@ export default function MetricList(props) {
         
         <div>
             <Grid container spacing = {2}  justify="space-between" alignItems="stretch">
-                <Grid item lg = {12}>
+                <Grid item xs = {12} lg = {12}>
                     <Metric2 
                         icon = {launchIcon}
                         altLogo = {'launch-logo'}
@@ -29,7 +29,7 @@ export default function MetricList(props) {
                     ></Metric2>
                 </Grid>
 
-                <Grid item lg = {12}>
+                <Grid item xs = {12} lg = {12}>
                     <Metric2 
                         icon = {missionIcon}
                         altLogo = {'mission-logo'}
