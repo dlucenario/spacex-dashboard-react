@@ -11,7 +11,19 @@ import LaunchModule from '../Launch/Launch';
 import NotFound from '../httpPages/NotFound';
 import Building from '../httpPages/Building';
 
-class Layout2 extends React.Component {
+import Hidden from '@material-ui/core/Hidden';
+import { withStyles } from '@material-ui/styles';
+
+const styles = theme => ({
+    appContainer: {
+        margin: '20px 100px',
+        [theme.breakpoints.down('xs')]: {
+            margin: '10px 10px'
+        }
+    }
+})
+
+class Layout extends React.Component {
 
     constructor(props) {
         super(props);
@@ -27,15 +39,19 @@ class Layout2 extends React.Component {
     }
 
     render() {
+        const { classes } = this.props;
+        
         return(
-            <div style = {{margin: '20px 100px'}}>
+            <div className = {classes.appContainer}>
                 
                 <Grid container spacing = {2}>
                     <Grid item>
-                        <Sidebar 
-                            drawer = {this.state.drawer}
-                            toggleDrawer = {this.toggleDrawer}>
-                        </Sidebar>
+                        <Hidden smDown>
+                            <Sidebar 
+                                drawer = {this.state.drawer}
+                                toggleDrawer = {this.toggleDrawer}>
+                            </Sidebar>
+                        </Hidden>
                     </Grid>
                     <Grid item lg>
                         <Appbar ></Appbar>
@@ -54,40 +70,8 @@ class Layout2 extends React.Component {
                     </Grid>
                 </Grid>
             </div>
-            // <div style = {{display: 'flex'}}>
-                
-            //     <Grid container direction='row'>
-            //         <Grid item>
-            //         <Sidebar drawer = {this.state.drawer}></Sidebar>
-            //         </Grid>
-            //             <Grid item>
-            //                 <Appbar
-            //                     toggleDrawer = {this.toggleDrawer}
-            //                 ></Appbar>
-            //             </Grid>
-            //             <Grid item>
-                                // <Switch>
-                                //     <Route exact path="/" component = {DashboardModule}></Route>
-                                //     <Route exact path="/dashboard" component = {DashboardModule}></Route>
-                                //     <Route path="/launch" component = {LaunchModule}></Route>
-                                //     {/* <Route path="/launch/:id" render={(props) => (
-                                //         <LaunchModule key={props.match.params.id} {...props} />)
-                                //     } /> */}
-                                //     <Route path="/mission" component = {Building}></Route>
-                                //     <Route path="/site" component = {Building}></Route>
-                                //     <Route path="/about" component = {Building}></Route>
-                                //     <Route path="/payload" component = {Building}></Route>
-                                //     <Route path="/rocket" component = {Building}></Route> 
-                                //     <Route path = '*' component = {NotFound}></Route>
-                                // </Switch>
-            //             </Grid>
-            //             <Grid item>
-            //                 <Footer></Footer>
-            //             </Grid>
-            //     </Grid>
-            // </div>
         );
     }
 }
 
-export default Layout2;
+export default withStyles(styles)(Layout);

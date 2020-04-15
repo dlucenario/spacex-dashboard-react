@@ -14,7 +14,8 @@ const useStyles = makeStyles({
     },
     linkButton: {
         marginRight: '10px',
-        width: '100px'
+        width: '100px',
+        marginTop: '10px'
     }
 });
 

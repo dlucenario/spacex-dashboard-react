@@ -10,7 +10,8 @@ import { convertStatus } from '../shared/utility';
 
 import { NavLink } from 'react-router-dom';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles( theme => ({
+
     tableTitle: {
         color: '#9a9a9a'
     },
@@ -48,7 +49,10 @@ const useStyles = makeStyles({
     missionName: {
         color: '#ffffff',
         fontWeight: 'bold',
-        fontSize: '20px'
+        fontSize: '20px',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '18px'
+        }
     },
     status: {
         color: '#ffffff',
@@ -58,6 +62,10 @@ const useStyles = makeStyles({
     item: {
         padding: '10px',
         marginBottom: '12px',
+        [theme.breakpoints.down('xs')]: {
+            padding: '0px',
+            marginBottom: '5px'
+        }
     },
     link: {
         color: '#ffffff',
@@ -67,11 +75,10 @@ const useStyles = makeStyles({
         height: '100%'
     }
 
-});
+}));
 
 export default function RecentLaunches(props) {
     const  classes = useStyles();
-    console.log(props);
     return(
         <div className = {classes.parent}>
 
@@ -82,12 +89,12 @@ export default function RecentLaunches(props) {
             {props.launchData.map( (element) => {
                 return(
                     <Grid container spacing = {2} className = {clsx(classes.item)} justify="center" alignItems="center">
-                        <Grid item lg = {2}>
+                        <Grid item xs = {12} lg = {2}>
                             <img 
                                 className = {clsx(classes.patchLogo)}
                                 src = {element.missionPatch} alt = {element.mission_name}></img>
                         </Grid>
-                        <Grid item lg = {8}>
+                        <Grid item xs = {12} lg = {8}>
                             <p className = {clsx(classes.paragraph,classes.status)}>
                                 Launch:
                                 <span className = {clsx({
@@ -107,7 +114,7 @@ export default function RecentLaunches(props) {
                             <p className = {clsx(classes.paragraph,classes.date)}>{element.date}</p>
                             <p className = {clsx(classes.paragraph,classes.missionName)}>{element.mission_name}</p>
                         </Grid>
-                        <Grid item lg = {2}>
+                        <Grid item xs = {12} lg = {2}>
                             <CustomButton>
                                     <NavLink to={`/launch/${element.flightNumber}`} className = {classes.link}>
                                         VIEW

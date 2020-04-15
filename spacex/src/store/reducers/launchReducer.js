@@ -128,12 +128,17 @@ const setOneLaunch = (state,action) => {
     const newDate = new Date(action.oneLaunch.launch_date_unix * 1000);
     const tempDate = `${convertMonth(newDate.getMonth())} ${newDate.getDate()}, ${newDate.getFullYear()}`;
 
+    let ships = '';
+    if(action.oneLaunch.ships.length !== 0) {
+        ships = action.oneLaunch.ships.join(",");
+    }
+
     // //for convenient traversing
     const launchTable = {
         launchDate: {text: 'Launch Date', value: tempDate},
         rocket: {text: 'Rocket', value: action.oneLaunch.rocket.rocket_name},
         core: {text: 'Core', value: action.oneLaunch.rocket.first_stage.cores[0].core_serial},
-        ships : {text: 'Ships', value:action.oneLaunch.ships},
+        ships : {text: 'Ships', value: ships},
         launchSite: {text: 'Launch Site', value: action.oneLaunch.launch_site.site_name}
     }
 

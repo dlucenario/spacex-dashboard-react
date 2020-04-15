@@ -33,12 +33,12 @@ class Dashboard extends React.Component {
         return(
             <Fade in = {true} timeout = {500}>
                 <Grid container spacing = {2} direction = 'column'>
-                    <Grid item >
+                <Grid item >
                 <Grid container spacing = {2}>
-                    <Grid item lg = {8}>
+                    <Grid item xs = {12} lg = {8}>
 
                         <Grid container spacing = {2} justify="space-between" alignItems="stretch">
-                            <Grid item xl = {5} lg = {4}>
+                            <Grid item xs = {12} xl = {5} lg = {4}>
                                 <MetricList
                                     launchesLength = {this.props.launches.length}
                                     missionLength = {this.props.missions.length}
@@ -47,11 +47,11 @@ class Dashboard extends React.Component {
                                 ></MetricList>
                             </Grid>
 
-                            <Grid item xl = {7} lg = {8}>
+                            <Grid xs = {12} item xl = {7} lg = {8}>
                                 <FeatureLaunch launchData = {this.props.featureLaunch}>
                             </FeatureLaunch>
                             </Grid>
-                            <Grid item lg = {12}>
+                            <Grid item xs = {12} lg = {12}>
                                 <LaunchPerYear
                                     launchData = {this.props.launches}
                                 ></LaunchPerYear>
@@ -61,7 +61,7 @@ class Dashboard extends React.Component {
                     </Grid>
 
 
-                    <Grid item lg = {4}>
+                    <Grid item xs = {12} lg = {4}>
                         <UpcomingLaunch
                             launchData = {this.props.upcomingLaunches}>
                         </UpcomingLaunch>
@@ -74,14 +74,14 @@ class Dashboard extends React.Component {
                 {/* Second Row */}
                 <Grid item>
                 <Grid container spacing = {2}>
-                    <Grid item lg = {6} xl = {8}>
+                    <Grid item xs = {12} lg = {6} xl = {8}>
                         <Grid container spacing = {2}>
-                            <Grid item lg = {12} xl = {6}>
+                            <Grid item xs = {12} lg = {12} xl = {6}>
                                 <PayloadChart
                                     chartData = {this.props.topPayloadData}>
                                 </PayloadChart>
                             </Grid>
-                            <Grid item lg = {12} xl = {6}>
+                            <Grid item xs = {12} lg = {12} xl = {6}>
                                 <PayloadPieChart
                                     title = {'Customers by Nationality'}
                                     chartId = {'nationalityPieChart'}
@@ -92,7 +92,7 @@ class Dashboard extends React.Component {
                         </Grid>
 
                     </Grid>
-                    <Grid item lg = {6} xl = {4}>
+                    <Grid item xs = {12} lg = {6} xl = {4}>
                         <RecentLaunches
                             launchData = {this.props.recentLaunches}>
                         </RecentLaunches>
