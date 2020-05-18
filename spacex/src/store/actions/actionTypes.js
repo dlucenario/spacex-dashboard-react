@@ -6,6 +6,12 @@ export const SET_FEATURE_LAUNCH = 'SET_FEATURE_LAUNCH';
 export const SET_LAUNCHES_LIST = 'SET_LAUNCHES_LIST';
 export const SET_ONE_LAUNCH = 'SET_ONE_LAUNCH';
 
+// Site Module
+export const SET_LAUNCH_SITES = 'SET_LAUNCH_SITES';
+export const SET_LAND_SITES = 'SET_LAND_SITES';
+export const SET_ACTIVE_LAUNCH_SITE = 'SET_ACTIVE_LAUNCH_SITE';
+export const SET_ACTIVE_LAND_SITE = 'SET_ACTIVE_LAND_SITE';
+
 // Mission Module
 export const SET_MISSIONS = 'SET_MISSIONS';
 

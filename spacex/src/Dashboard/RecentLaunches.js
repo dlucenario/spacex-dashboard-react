@@ -88,7 +88,7 @@ export default function RecentLaunches(props) {
         headerExist = {true}>
             {props.launchData.map( (element) => {
                 return(
-                    <Grid container spacing = {2} className = {clsx(classes.item)} justify="center" alignItems="center">
+                    <Grid container spacing = {2} className = {clsx(classes.item)} key = {element.mission_name} justify="center" alignItems="center">
                         <Grid item xs = {12} lg = {2}>
                             <img 
                                 className = {clsx(classes.patchLogo)}

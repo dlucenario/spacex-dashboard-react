@@ -8,6 +8,8 @@ import Footer from './Footer';
 
 import DashboardModule from '../Dashboard/Dashboard';
 import LaunchModule from '../Launch/Launch';
+import SiteModule from '../Site/Site';
+
 import NotFound from '../httpPages/NotFound';
 import Building from '../httpPages/Building';
 
@@ -16,7 +18,7 @@ import { withStyles } from '@material-ui/styles';
 
 const styles = theme => ({
     appContainer: {
-        margin: '20px 100px',
+        margin: '20px',
         [theme.breakpoints.down('xs')]: {
             margin: '10px 10px'
         }
@@ -60,7 +62,8 @@ class Layout extends React.Component {
                             <Route exact path="/dashboard" component = {DashboardModule}></Route>
                             <Route path="/launch" component = {LaunchModule}></Route>
                             <Route path="/mission" component = {Building}></Route>
-                            <Route path="/site" component = {Building}></Route>
+                            <Route path="/site/:mode/:id" component = {SiteModule}></Route>
+                            <Route path="/site*" component = {SiteModule}></Route>
                             <Route path="/about" component = {Building}></Route>
                             <Route path="/payload" component = {Building}></Route>
                             <Route path="/rocket" component = {Building}></Route> 

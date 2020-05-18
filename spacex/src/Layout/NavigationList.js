@@ -98,7 +98,7 @@ export default function NavigationList(props) {
 
             <ListItem button className = {classes.listItem} activeClassName = {classes.active} component = {NavLink} to="/site">
                 <ListItemIcon>
-                    <img className = {classes.navImg} src= {siteIcon} alt = 'mission-icon'/>
+                    <img className = {classes.navImg} src= {siteIcon} alt = 'site-icon'/>
                 </ListItemIcon>
                 <ListItemText disableTypography
                     primary={<Typography className = {classes.navText}>sites</Typography>}

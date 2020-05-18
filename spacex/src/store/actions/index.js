@@ -12,6 +12,12 @@ export {
 } from './missionActions';
 
 export {
+    getLaunchSites,
+    getLandSites,
+    setActiveSite
+} from './siteActions';
+
+export {
     getRockets
 } from './rocketActions';
 
