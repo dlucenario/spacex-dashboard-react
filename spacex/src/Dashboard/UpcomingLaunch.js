@@ -75,7 +75,7 @@ export default function UpcomingLaunch(props) {
                 {
                     props.launchData.map( (element) => (
                        
-                        <div className = {clsx(classes.eventContent)}>
+                        <div className = {clsx(classes.eventContent)} key = {element.mission_name}>
                             <Grid container spacing = {2}>
                                 <Grid item xs = {12} lg = {8}>
                                     <p className = {clsx(classes.missionName)}>{element.mission_name}</p>

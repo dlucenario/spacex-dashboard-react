@@ -16,6 +16,7 @@ import dragonReducer from './store/reducers/dragonReducer';
 import coreReducer from './store/reducers/coreReducer';
 import shipReducer from './store/reducers/shipReducer';
 import payloadReducer from './store/reducers/payloadReducer';
+import siteReducer from './store/reducers/siteReducer';
 
 const rootReducer = combineReducers({
   launchReducer: launchReducer,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   dragonReducer: dragonReducer,
   coreReducer: coreReducer,
   shipReducer: shipReducer,
-  payloadReducer: payloadReducer
+  payloadReducer: payloadReducer,
+  siteReducer: siteReducer
 });
 
 const store = createStore(rootReducer, compose(
@@ -32,11 +34,11 @@ const store = createStore(rootReducer, compose(
 ));
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
     <Provider store = {store}>
       <App />
     </Provider>
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById('root')
 );
 
